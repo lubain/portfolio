@@ -1,4 +1,8 @@
 import { Projet } from "../types/Projet";
+import PacmanImg from "@/assets/Pacman.PNG";
+import asrImage from "@/assets/ASR.PNG";
+import chatImage from "@/assets/chat.png";
+import MadaocsImage from "@/assets/Madaocs.PNG";
 
 export const projets: Projet[] = [
   {
@@ -6,7 +10,7 @@ export const projets: Projet[] = [
     titre: "Jeux Pacman",
     description: "Trouver l'unique sortie dans un labyrinthe...",
     technologies: ["JS", "HTML", "CSS"],
-    image: "src/assets/Pacman.PNG",
+    image: PacmanImg,
     lien: "https://gravirygame.netlify.app/pacman/pacman",
     github: "https://github.com/lubain/GameJS",
     categorie: "jeux",
@@ -16,7 +20,7 @@ export const projets: Projet[] = [
     titre: "MADAOCS",
     description: "Site d'achat et vente de voiture d'occasion...",
     technologies: ["PHP", "Codeigniter", "MySQL", "CSS", "JS"],
-    image: "src/assets/Madaocs.PNG",
+    image: MadaocsImage,
     lien: "#",
     github: "https://github.com/lubain/Madaocs",
     categorie: "web",
@@ -26,7 +30,7 @@ export const projets: Projet[] = [
     titre: "Chat-App",
     description: "Système de messagerie instentané...",
     technologies: ["React.js", "Node.js", "Socket.io", "Sass"],
-    image: "src/assets/chat.png",
+    image: chatImage,
     lien: "#",
     github: "#",
     categorie: "backend",
@@ -36,7 +40,7 @@ export const projets: Projet[] = [
     titre: "Reconaissance vocale",
     description: "Reconaissance de la langue malgache...",
     technologies: ["Python", "CTCDecode", "Pytorch", "React native", "FastAPI"],
-    image: "src/assets/ASR.PNG",
+    image: asrImage,
     lien: "#",
     github: "#",
     categorie: "ia",
