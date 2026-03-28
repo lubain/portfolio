@@ -1,73 +1,121 @@
-import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Facebook } from "lucide-react";
-import Button from "../ui/Button";
+import { Globe, Mail, Github, Linkedin } from "lucide-react";
+import { FadeIn } from "../ui/FadeIn";
 
 const ContactSection: React.FC = () => {
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-4">Contact</h2>
+    <section
+      id="contact"
+      className="py-24 px-6 bg-gradient-to-b from-transparent to-slate-100 dark:to-[#0a0f1d] transition-colors duration-300"
+    >
+      <div className="max-w-4xl mx-auto">
+        <FadeIn>
+          <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-3xl p-8 md:p-12 backdrop-blur-xl relative overflow-hidden shadow-xl dark:shadow-none transition-colors duration-300">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-            Vous avez un projet en tête ? Contactez-moi pour discuter de vos
-            besoins et transformer vos idées en réalité.
-          </p>
+            <div className="text-center mb-10 relative z-10">
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+                Prêt à collaborer ?
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400">
+                Que ce soit pour un projet freelance, une offre d'emploi ou
+                simplement pour échanger sur la tech.
+              </p>
+            </div>
 
-          {/* Bloc téléphone */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-3 text-lg font-medium text-primary mb-6"
-          >
-            <Phone className="w-5 h-5" />
-            <a href="tel:+261320639218" className="hover:underline">
-              +261 32 06 392 18
-            </a>
-          </motion.div>
+            <div className="grid md:grid-cols-5 gap-12 relative z-10">
+              <div className="md:col-span-2 space-y-8">
+                <div>
+                  <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                    Informations
+                  </h4>
+                  <div className="space-y-4">
+                    <a
+                      href="mailto:hello@example.com"
+                      className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center border border-slate-200 dark:border-white/10">
+                        <Mail className="w-5 h-5" />
+                      </div>
+                      fadhelubain@gmail.com
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center border border-slate-200 dark:border-white/10">
+                        <Globe className="w-5 h-5" />
+                      </div>
+                      Antananarivo (Remote)
+                    </a>
+                  </div>
+                </div>
 
-          {/* Réseaux sociaux */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-6 mb-8"
-          >
-            <a
-              href="https://www.linkedin.com/in/zafindramanga-lubain-fadhel/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="https://www.facebook.com/fadhellubain"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
-            >
-              <Facebook className="w-5 h-5" />
-              <span>Facebook</span>
-            </a>
-          </motion.div>
+                <div>
+                  <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                    Réseaux
+                  </h4>
+                  <div className="flex gap-4">
+                    <a
+                      href="#"
+                      className="w-12 h-12 rounded-full bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 hover:-translate-y-1 flex items-center justify-center border border-slate-200 dark:border-white/10 transition-all text-slate-700 dark:text-white"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                    <a
+                      href="#"
+                      className="w-12 h-12 rounded-full bg-slate-100 dark:bg-white/5 hover:bg-[#0077b5]/10 dark:hover:bg-[#0077b5]/20 hover:-translate-y-1 flex items-center justify-center border border-slate-200 dark:border-white/10 transition-all text-slate-700 dark:text-white hover:border-[#0077b5]/50 hover:text-[#0077b5] dark:hover:text-[#0077b5]"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
 
-          {/* Bouton email */}
-          <Button size="lg" className="text-lg px-8 py-3">
-            <Mail className="mr-2 w-5 h-5" />
-            Me contacter
-          </Button>
-        </motion.div>
+              <div className="md:col-span-3">
+                <form
+                  className="space-y-4"
+                  onSubmit={(e) => e.preventDefault()}
+                >
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-slate-700 dark:text-slate-300 ml-1">
+                        Nom
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-slate-700 dark:text-slate-300 ml-1">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        className="w-full bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300 ml-1">
+                      Message
+                    </label>
+                    <textarea
+                      rows={4}
+                      className="w-full bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all resize-none"
+                      placeholder="Parlez-moi de votre idée..."
+                    ></textarea>
+                  </div>
+                  <button className="w-full py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold transition-all hover:shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)] active:scale-[0.98]">
+                    Envoyer le message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

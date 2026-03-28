@@ -1,36 +1,12 @@
-import { Github, Linkedin, Mail } from "lucide-react";
-
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-muted/50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-muted-foreground">© 2025 Portfolio.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a
-              target="_blank"
-              href="https://github.com/lubain"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/in/zafindramanga-lubain-fadhel/"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              target="_blank"
-              href="fadhelubain@gmail.com"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-      </div>
+    <footer className="py-8 border-t border-slate-200 dark:border-white/5 text-center relative z-10 transition-colors duration-300">
+      <p className="text-slate-500 text-sm">
+        © {new Date().getFullYear()} Développé avec{" "}
+        <span className="text-purple-600 dark:text-purple-500">React</span> &{" "}
+        <span className="text-blue-600 dark:text-blue-500">Tailwind</span>. Tous
+        droits réservés.
+      </p>
     </footer>
   );
 };

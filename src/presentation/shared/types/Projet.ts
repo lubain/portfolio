@@ -1,12 +1,11 @@
-import { Category } from "./Category";
+import { ProjectCategory } from "./ProjectCategory";
 
-export interface Projet {
-  id: number;
-  titre: string;
+export interface Project {
+  title: string;
+  category: ProjectCategory;
   description: string;
-  technologies: string[];
+  techs: string[];
   image: string;
-  lien: string;
+  link: string;
   github: string;
-  categorie: Category;
 }

@@ -1,82 +1,104 @@
-import { FaReact } from "react-icons/fa";
 import {
+  SiReact,
   SiTypescript,
-  SiJavascript,
-  SiPostgresql,
+  SiTailwindcss,
   SiFramer,
-  SiSupabase,
-  SiRedux,
-  SiPhp,
+  SiNodedotjs,
+  SiExpress,
+  SiSocketdotio,
+  SiFastapi,
+  SiPostgresql,
+  SiMongodb,
+  SiDocker,
+  SiVercel,
+  SiGithubactions,
+  SiGithub,
   SiMysql,
 } from "react-icons/si";
+import { Server, Database, Layout, Terminal } from "lucide-react";
 
-export const skills = [
+export const SKILLS = [
   {
-    category: "Frameworks & Bibliothèques",
-    items: [
+    title: "Frontend",
+    icon: <Layout className="w-8 h-8 text-blue-500 dark:text-blue-400" />,
+    skills: [
       {
         name: "React",
-        icon: <FaReact className="text-sky-400 text-2xl" />,
-        level: 95,
-        color: "bg-sky-400",
+        icon: <SiReact className="w-4 h-4 text-sky-500" />,
+      },
+      {
+        name: "TypeScript",
+        icon: <SiTypescript className="w-4 h-4 text-blue-500" />,
+      },
+      {
+        name: "Tailwind CSS",
+        icon: <SiTailwindcss className="w-4 h-4 text-cyan-500" />,
       },
       {
         name: "Framer Motion",
-        icon: <SiFramer className="text-pink-500 text-2xl" />,
-        level: 80,
-        color: "bg-pink-500",
-      },
-      {
-        name: "Redux/Toolkit",
-        icon: <SiRedux className="text-black-500 text-2xl" />,
-        level: 90,
-        color: "bg-sky-100",
+        icon: <SiFramer className="w-4 h-4 text-pink-500" />,
       },
     ],
   },
   {
-    category: "Langages",
-    items: [
+    title: "Backend",
+    icon: <Server className="w-8 h-8 text-green-500 dark:text-green-400" />,
+    skills: [
       {
-        name: "TypeScript",
-        icon: <SiTypescript className="text-blue-500 text-2xl" />,
-        level: 85,
-        color: "bg-blue-500",
+        name: "Node.js",
+        icon: <SiNodedotjs className="w-4 h-4 text-green-500" />,
       },
       {
-        name: "JavaScript",
-        icon: <SiJavascript className="text-yellow-400 text-2xl" />,
-        level: 90,
-        color: "bg-yellow-400",
+        name: "Express",
+        icon: <SiExpress className="w-4 h-4 text-slate-500" />,
       },
       {
-        name: "PHP",
-        icon: <SiPhp className="text-purple-600 text-2xl" />,
-        level: 90,
-        color: "bg-purple-600",
+        name: "WebSockets",
+        icon: <SiSocketdotio className="w-4 h-4 text-slate-500" />,
+      },
+      {
+        name: "FastAPI",
+        icon: <SiFastapi className="w-4 h-4 text-slate-500" />,
       },
     ],
   },
   {
-    category: "Bases de données",
-    items: [
-      {
-        name: "Supabase",
-        icon: <SiSupabase className="text-yellow-500 text-2xl" />,
-        level: 75,
-        color: "bg-yellow-500",
-      },
+    title: "Base de données",
+    icon: <Database className="w-8 h-8 text-purple-500 dark:text-purple-400" />,
+    skills: [
       {
         name: "PostgreSQL",
-        icon: <SiPostgresql className="text-sky-600 text-2xl" />,
-        level: 80,
-        color: "bg-sky-600",
+        icon: <SiPostgresql className="w-4 h-4 text-sky-600" />,
+      },
+      {
+        name: "MongoDB",
+        icon: <SiMongodb className="w-4 h-4 text-emerald-500" />,
       },
       {
         name: "MySQL",
-        icon: <SiMysql className="text-sky-600 text-2xl" />,
-        level: 85,
-        color: "bg-sky-600",
+        icon: <SiMysql className="w-4 h-4 text-emerald-500" />,
+      },
+    ],
+  },
+  {
+    title: "DevOps & Outils",
+    icon: <Terminal className="w-8 h-8 text-orange-500 dark:text-orange-400" />,
+    skills: [
+      {
+        name: "Docker",
+        icon: <SiDocker className="w-4 h-4 text-sky-500" />,
+      },
+      {
+        name: "AWS / Vercel",
+        icon: <SiVercel className="w-4 h-4 text-slate-500" />,
+      },
+      {
+        name: "CI/CD (Actions)",
+        icon: <SiGithubactions className="w-4 h-4 text-blue-500" />,
+      },
+      {
+        name: "Git / GitHub",
+        icon: <SiGithub className="w-4 h-4 text-slate-700" />,
       },
     ],
   },

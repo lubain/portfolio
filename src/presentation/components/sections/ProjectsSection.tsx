@@ -1,101 +1,110 @@
-import { motion } from "framer-motion";
-import { ExternalLink, Code } from "lucide-react";
-import AnimatedSection from "./AnimatedSection";
-import ProjectGrid from "../ui/ProjectGrid";
-import { Projet } from "@/presentation/shared/types/Projet";
-import { Category } from "@/presentation/shared/types/Category";
-import ProjectFilter from "../features/ProjectFilter";
-import { categories } from "@/presentation/shared/constantes/categories";
-import Button from "../ui/Button";
+import { ExternalLink } from "lucide-react";
+import { ProjectCategory } from "@/presentation/shared/types/ProjectCategory";
+import { FadeIn } from "../ui/FadeIn";
+import { SpotlightCard } from "../ui/SpotlightCard";
+import { FaGithub } from "react-icons/fa";
+import { PROJECTS } from "@/presentation/shared/constantes/projets";
+import { useState } from "react";
 
-interface ProjectsSectionProps {
-  projets: Projet[];
-  activeCategory: Category;
-  setActiveCategory: (cat: Category) => void;
-}
-
-const ProjectsSection: React.FC<ProjectsSectionProps> = ({
-  projets,
-  activeCategory,
-  setActiveCategory,
-}) => {
-  const filteredProjets =
-    activeCategory === "tous"
-      ? projets
-      : projets.filter((p) => p.categorie === activeCategory);
+const ProjectsSection = () => {
+  const [activeFilter, setActiveFilter] = useState<ProjectCategory>("Tous");
+  const filteredProjects = PROJECTS.filter(
+    (p) => activeFilter === "Tous" || p.category === activeFilter
+  );
+  const categories: ProjectCategory[] = [
+    "Tous",
+    "App Web",
+    "Backend & API",
+    "IA",
+    "Jeux Vidéo",
+  ];
 
   return (
-    <section id="projets" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <AnimatedSection className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Mes projets</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Découvrez une sélection de mes réalisations récentes, alliant
-            innovation technique et design moderne.
-          </p>
-        </AnimatedSection>
+    <section id="projets" className="py-24 px-6 relative">
+      <div className="max-w-7xl mx-auto">
+        <FadeIn>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8 flex items-center justify-between">
+            <div>
+              <span className="w-12 h-[2px] bg-blue-500 inline-block align-middle mr-4"></span>
+              Travaux Récents
+            </div>
+          </h2>
+        </FadeIn>
 
-        {/* Project Filter */}
-        <AnimatedSection className="mb-12" delay={0.2}>
-          <ProjectFilter
-            categories={categories}
-            activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
-            projectCount={filteredProjets.length}
-          />
-        </AnimatedSection>
-
-        {/* Projects Grid */}
-        <AnimatedSection delay={0.4}>
-          <ProjectGrid
-            projets={filteredProjets}
-            activeCategory={activeCategory}
-          />
-        </AnimatedSection>
-
-        {/* Empty State */}
-        {filteredProjets.length === 0 && (
-          <AnimatedSection className="text-center py-16" delay={0.6}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="space-y-4"
-            >
-              <div className="w-16 h-16 mx-auto bg-muted rounded-full flex items-center justify-center">
-                <Code className="w-8 h-8 text-muted-foreground" />
-              </div>
-              <h3 className="text-xl font-semibold">Aucun projet trouvé</h3>
-              <p className="text-muted-foreground">
-                Aucun projet ne correspond à cette catégorie pour le moment.
-              </p>
-              <Button
-                variant="outline"
-                onClick={() => setActiveCategory("tous")}
-                className="mt-4"
+        <FadeIn delay={100}>
+          <div className="flex flex-wrap gap-2 mb-12 overflow-x-auto hide-scrollbar pb-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
+                  activeFilter === cat
+                    ? "bg-purple-600 text-white shadow-lg shadow-purple-500/25"
+                    : "bg-slate-200 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white border border-slate-300 dark:border-white/10"
+                }`}
               >
-                Voir tous les projets
-              </Button>
-            </motion.div>
-          </AnimatedSection>
-        )}
+                {cat}
+              </button>
+            ))}
+          </div>
+        </FadeIn>
 
-        {/* Call to Action */}
-        {filteredProjets.length > 0 && (
-          <AnimatedSection className="text-center mt-16" delay={0.6}>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="outline" size="lg" className="group">
-                Voir tous mes projets sur GitHub
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ExternalLink className="ml-2 w-5 h-5" />
-                </motion.div>
-              </Button>
-            </motion.div>
-          </AnimatedSection>
-        )}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, idx) => (
+            <FadeIn key={project.title} delay={idx * 100}>
+              <SpotlightCard className="group h-full flex flex-col">
+                <div className="relative overflow-hidden aspect-video">
+                  <div className="absolute inset-0 bg-slate-900/10 dark:bg-slate-900/20 group-hover:bg-transparent transition duration-300 z-10"></div>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 ease-out"
+                  />
+                  <div className="absolute top-4 right-4 z-20">
+                    <span className="px-3 py-1 text-xs font-semibold bg-white/90 dark:bg-black/50 backdrop-blur-md text-slate-900 dark:text-white rounded-full border border-slate-200 dark:border-white/20 shadow-sm">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-6 flex-grow text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.techs.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs font-medium text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-500/10 px-2.5 py-1 rounded-md border border-purple-200 dark:border-purple-500/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-4 mt-auto pt-4 border-t border-slate-200 dark:border-white/10">
+                    <a
+                      href={project.github}
+                      className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                    >
+                      <FaGithub className="w-4 h-4" /> Code
+                    </a>
+                    <a
+                      href={project.link}
+                      className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ml-auto"
+                    >
+                      Live Demo <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );
