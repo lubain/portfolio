@@ -84,7 +84,7 @@ const ContactSection: React.FC = () => {
                       <input
                         type="text"
                         className="w-full bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
-                        placeholder="John Doe"
+                        placeholder="Nom Prenom"
                       />
                     </div>
                     <div className="space-y-2">
@@ -94,7 +94,7 @@ const ContactSection: React.FC = () => {
                       <input
                         type="email"
                         className="w-full bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
-                        placeholder="john@example.com"
+                        placeholder="email@example.com"
                       />
                     </div>
                   </div>

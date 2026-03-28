@@ -21,12 +21,13 @@ const HommeSection = () => {
         <FadeIn delay={150}>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
             Développeur <br className="hidden md:block" />
-            <span className="text-gradient">
+            <span>
               <TypewriterEffect
                 texts={["Frontend", "Backend"]}
                 speed={150}
                 deleteSpeed={100}
                 pauseDuration={2000}
+                className="text-gradient"
               />
             </span>
           </h1>

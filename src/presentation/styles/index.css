@@ -38,3 +38,10 @@ html { scroll-behavior: smooth; }
 }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.typewriter-cursor {
+    animation: typewriter-blink 0.8s infinite;
+}
+@keyframes typewriter-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}

@@ -1,10 +1,9 @@
-import { motion } from "framer-motion";
 import { FadeIn } from "../ui/FadeIn";
 import { timeline } from "@/presentation/shared/constantes/timeline";
 
 const AboutSection = () => {
   return (
-    <section id="àpropos" className="py-24 px-6 relative">
+    <section id="a-propos" className="py-24 px-6 relative overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <FadeIn>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-16 flex items-center gap-4">
@@ -13,7 +12,7 @@ const AboutSection = () => {
         </FadeIn>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <FadeIn direction="left" delay={150}>
+          <FadeIn delay={150} direction="left">
             <p>
               Passionné par le code depuis mon plus jeune âge, j'ai transformé
               cette passion en expertise au fil des{" "}
@@ -41,52 +40,45 @@ const AboutSection = () => {
             </p>
           </FadeIn>
 
-          <FadeIn direction="right" delay={300}>
+          <FadeIn delay={300} direction="right">
             {/* Section avec description et chronologie */}
             <div>
               <h3 className="text-2xl font-bold mb-6">Mon parcours</h3>
 
               {/* Chronologie */}
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
+              <div className="relative">
                 {/* Ligne verticale */}
                 <div className="absolute left-4 top-0 h-full w-1 bg-purple-600 rounded-full" />
 
                 <div className="space-y-10 pl-12">
                   {timeline.map((item, index) => (
-                    <motion.div
+                    <FadeIn
                       key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.2 }}
-                      viewport={{ once: true }}
-                      className="relative"
+                      delay={150 + index * 100}
+                      direction="up"
                     >
-                      {/* Point indicateur */}
-                      <div className="absolute -left-11.5 top-4 w-8 h-8 flex items-center justify-center bg-white border-2 border-slate-200 dark:border-white/10 rounded-full shadow-md">
-                        {item.icon}
-                      </div>
+                      <div className="relative">
+                        {/* Point indicateur */}
+                        <div className="absolute -left-11.5 top-4 w-8 h-8 flex items-center justify-center bg-white border-2 border-slate-200 dark:border-white/10 rounded-full shadow-md">
+                          {item.icon}
+                        </div>
 
-                      <div className="bg-card/50 backdrop-blur-sm border border-slate-200 dark:border-white/10 rounded-xl p-5 hover:shadow-lg transition-all">
-                        <span className="text-sm text-purple-500 font-medium">
-                          {item.date}
-                        </span>
-                        <h4 className="text-lg font-semibold mt-1">
-                          {item.title}
-                        </h4>
-                        <p className="text-muted-foreground text-sm mt-2">
-                          {item.description}
-                        </p>
+                        <div className="bg-card/50 backdrop-blur-sm border border-slate-200 dark:border-white/10 rounded-xl p-5 hover:shadow-lg transition-all">
+                          <span className="text-sm text-purple-500 font-medium">
+                            {item.date}
+                          </span>
+                          <h4 className="text-lg font-semibold mt-1">
+                            {item.title}
+                          </h4>
+                          <p className="text-muted-foreground text-sm mt-2">
+                            {item.description}
+                          </p>
+                        </div>
                       </div>
-                    </motion.div>
+                    </FadeIn>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </div>
           </FadeIn>
         </div>
