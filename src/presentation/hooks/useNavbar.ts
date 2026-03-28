@@ -20,6 +20,11 @@ export const useNavbar = () => {
       setIsDarkMode(!isDarkMode);
       return;
     }
+    // Si l'écran est à md
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      setIsDarkMode(!isDarkMode);
+      return;
+    }
 
     const rect = themeBtnRef.current.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
@@ -103,22 +108,27 @@ export const useNavbar = () => {
       observerCallback,
       observerOptions
     );
-    const sections = [
-      "accueil",
-      "àpropos",
-      "compétences",
-      "projets",
-      "contact",
-    ];
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
 
-    window.addEventListener("scroll", handleScroll);
+    // Observe dynamiquement toutes les sections existantes (y compris celles rendues plus tard)
+    const observedIds = new Set<string>();
+    const scanSections = () => {
+      document.querySelectorAll<HTMLElement>("section[id]").forEach((el) => {
+        const id = el.id;
+        if (!id || observedIds.has(id)) return;
+        observedIds.add(id);
+        observer.observe(el);
+      });
+    };
+
+    scanSections();
+    const mutation = new MutationObserver(() => scanSections());
+    mutation.observe(document.body, { childList: true, subtree: true });
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
       observer.disconnect();
+      mutation.disconnect();
     };
   }, []);
 

@@ -1,12 +1,23 @@
+import { lazy, Suspense } from "react";
 import Footer from "./components/ui/Footer";
-import ContactSection from "./components/sections/ContactSection";
-import ProjectsSection from "./components/sections/ProjectsSection";
-import SkillsSection from "./components/sections/SkillsSection";
-import AboutSection from "./components/sections/AboutSection";
 import HommeSection from "./components/sections/HommeSection";
 import Background from "./components/ui/Background";
 import Navbar from "./components/features/Navbar";
 import { useNavbar } from "./hooks/useNavbar";
+import DeferredSection from "./components/ui/DeferredSection";
+
+const AboutSection = lazy(
+  () => import("./components/sections/AboutSection")
+);
+const SkillsSection = lazy(
+  () => import("./components/sections/SkillsSection")
+);
+const ProjectsSection = lazy(
+  () => import("./components/sections/ProjectsSection")
+);
+const ContactSection = lazy(
+  () => import("./components/sections/ContactSection")
+);
 
 export default function App() {
   const { isDarkMode } = useNavbar();
@@ -22,10 +33,30 @@ export default function App() {
 
         <main className="relative z-10">
           <HommeSection />
-          <AboutSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ContactSection />
+
+          <DeferredSection>
+            <Suspense fallback={<div className="py-24 px-6" />}>
+              <AboutSection />
+            </Suspense>
+          </DeferredSection>
+
+          <DeferredSection>
+            <Suspense fallback={<div className="py-24 px-6" />}>
+              <SkillsSection />
+            </Suspense>
+          </DeferredSection>
+
+          <DeferredSection>
+            <Suspense fallback={<div className="py-24 px-6" />}>
+              <ProjectsSection />
+            </Suspense>
+          </DeferredSection>
+
+          <DeferredSection>
+            <Suspense fallback={<div className="py-24 px-6" />}>
+              <ContactSection />
+            </Suspense>
+          </DeferredSection>
         </main>
 
         <Footer />

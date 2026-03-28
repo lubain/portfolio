@@ -1,8 +1,7 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { ProjectCategory } from "@/presentation/shared/types/ProjectCategory";
 import { FadeIn } from "../ui/FadeIn";
 import { SpotlightCard } from "../ui/SpotlightCard";
-import { FaGithub } from "react-icons/fa";
 import { PROJECTS } from "@/presentation/shared/constantes/projets";
 import { useState } from "react";
 
@@ -58,6 +57,11 @@ const ProjectsSection = () => {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={800}
+                    height={450}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 ease-out"
                   />
                   <div className="absolute top-4 right-4 z-20">
@@ -91,7 +95,7 @@ const ProjectsSection = () => {
                       href={project.github}
                       className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
                     >
-                      <FaGithub className="w-4 h-4" /> Code
+                      <Github className="w-4 h-4" /> Code
                     </a>
                     <a
                       href={project.link}
