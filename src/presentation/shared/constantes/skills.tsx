@@ -15,7 +15,7 @@ import {
   SiGithub,
   SiMysql,
 } from "react-icons/si";
-import { Server, Database, Layout, Terminal } from "lucide-react";
+import { Server, Database, Terminal, Layout } from "lucide-react";
 
 export const SKILLS = [
   {

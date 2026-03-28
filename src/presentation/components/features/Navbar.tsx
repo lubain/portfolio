@@ -59,6 +59,7 @@ const Navbar = () => {
           ))}
 
           <button
+            aria-label="Basculer le thème"
             ref={themeBtnRef}
             onClick={toggleTheme}
             className="relative p-2.5 rounded-full bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-white hover:scale-110 active:scale-90 transition-all group overflow-hidden"
@@ -76,6 +77,7 @@ const Navbar = () => {
         {/* Mobile Menu Toggle */}
         <div className="md:hidden flex items-center gap-4 relative z-10">
           <button
+            aria-label="Basculer le thème"
             onClick={() => setIsDarkMode(!isDarkMode)}
             className="p-2 rounded-full bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-white transition-all"
           >
@@ -86,6 +88,7 @@ const Navbar = () => {
             )}
           </button>
           <button
+            aria-label="Menu mobile"
             className="p-2 text-slate-900 dark:text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >

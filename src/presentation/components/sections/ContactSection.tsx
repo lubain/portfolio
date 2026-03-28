@@ -108,7 +108,10 @@ const ContactSection: React.FC = () => {
                       placeholder="Parlez-moi de votre idée..."
                     ></textarea>
                   </div>
-                  <button className="w-full py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold transition-all hover:shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)] active:scale-[0.98]">
+                  <button
+                    aria-label="Envoyer le message"
+                    className="w-full py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold transition-all hover:shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)] active:scale-[0.98]"
+                  >
                     Envoyer le message
                   </button>
                 </form>
