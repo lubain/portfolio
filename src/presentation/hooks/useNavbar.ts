@@ -1,10 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useNavbarStore } from "@/presentation/store/useNavbarStore";
 
 export const useNavbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const [activeSection, setActiveSection] = useState("accueil");
+  const isScrolled = useNavbarStore((state) => state.isScrolled);
+  const mobileMenuOpen = useNavbarStore((state) => state.mobileMenuOpen);
+  const isDarkMode = useNavbarStore((state) => state.isDarkMode);
+  const activeSection = useNavbarStore((state) => state.activeSection);
+  const setMobileMenuOpen = useNavbarStore((state) => state.setMobileMenuOpen);
+  const setIsScrolled = useNavbarStore((state) => state.setIsScrolled);
+  const setIsDarkMode = useNavbarStore((state) => state.setIsDarkMode);
+  const setActiveSection = useNavbarStore((state) => state.setActiveSection);
+
   const themeBtnRef = useRef<HTMLButtonElement>(null);
 
   // Animation Kamui (Obito) - Déclenchée précisément au clic
