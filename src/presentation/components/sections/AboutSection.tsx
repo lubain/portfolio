@@ -17,7 +17,7 @@ const AboutSection = () => {
               Passionné par le code depuis mon plus jeune âge, j'ai transformé
               cette passion en expertise au fil des{" "}
               <span className="text-slate-900 dark:text-white font-semibold">
-                5 dernières années
+                4 dernières années
               </span>
               . Je conçoit des architectures logicielles robustes et des
               interfaces utilisateur pixel-perfect.
