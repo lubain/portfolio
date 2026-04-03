@@ -94,12 +94,14 @@ const ProjectsSection = () => {
                   <div className="flex items-center gap-4 mt-auto pt-4 border-t border-slate-200 dark:border-white/10">
                     <a
                       href={project.github}
+                      target={`${project.github != "#" ? "_blank" : "_self"}`}
                       className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
                     >
                       <Github className="w-4 h-4" /> Code
                     </a>
                     <a
                       href={project.link}
+                      target={`${project.link != "#" ? "_blank" : "_self"}`}
                       className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ml-auto"
                     >
                       Live Demo <ExternalLink className="w-4 h-4" />

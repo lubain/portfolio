@@ -2,26 +2,26 @@ import { Project } from "../types/Projet";
 
 export const PROJECTS: Project[] = [
   {
-    title: "NeuroSphere AI",
+    title: "Speech to Text Malagasy",
     category: "IA",
     description:
-      "Plateforme d'analyse prédictive utilisant des modèles de Deep Learning NLP pour l'analyse de sentiment en temps réel.",
-    techs: ["React", "TypeScript", "Node.js", "Python (API)"],
+      "Projet de reconnaissance vocale pour la langue malgache, entraîné avec PyTorch et une étape de prétraitement audio pour le nettoyage, la normalisation et l'extraction des caractéristiques.",
+    techs: ["PyTorch", "Python", "Audio Preprocessing"],
     image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=800",
     link: "#",
-    github: "#",
+    github: "https://github.com/lubain/speech_to_text",
   },
   {
-    title: "OmniStore E-Commerce",
+    title: "SolfaML",
     category: "App Web",
     description:
-      "Application e-commerce headless avec gestion d'état complexe, panier persistant et paiements intégrés via Stripe.",
-    techs: ["Next.js", "Tailwind CSS", "Redux", "Stripe"],
+      "Éditeur de partitions musicales conçu pour la composition et l'édition fluide, avec React et Tailwind pour l'interface, Zustand pour la gestion d'état et Rust pour la logique de compilation.",
+    techs: ["React", "Tailwind CSS", "Zustand", "Rust"],
     image:
-      "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&q=80&w=800",
     link: "#",
-    github: "#",
+    github: "https://github.com/solfaml/solfaml-front",
   },
   {
     title: "CoreGateway Microservices",
@@ -32,39 +32,39 @@ export const PROJECTS: Project[] = [
     image:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800",
     link: "#",
-    github: "#",
+    github: "https://github.com/lubain/CoreGateway-Microservices",
   },
   {
-    title: "Neon Drift Racer",
-    category: "Jeux Vidéo",
-    description:
-      "Jeu de course rétro-futuriste jouable sur navigateur, avec un moteur physique maison et multijoueur via WebSockets.",
-    techs: ["Three.js", "Socket.io", "Express", "WebGL"],
-    image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800",
-    link: "#",
-    github: "#",
-  },
-  {
-    title: "Nexus Dashboard",
+    title: "Chat-app",
     category: "App Web",
     description:
-      "Interface d'administration B2B offrant des visualisations de données complexes et une gestion des rôles utilisateurs avancée.",
-    techs: ["Vue.js", "Tailwind", "D3.js", "PostgreSQL"],
+      "Système de messagerie instantané développé avec React et Tailwind pour l'interface, Node.js pour le backend et Socket pour la communication en temps réel.",
+    techs: ["React", "Node.js", "Express", "Socket.io"],
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&q=80&w=800",
     link: "#",
-    github: "#",
+    github: "https://github.com/k-hubs-k/Chat-App",
   },
   {
-    title: "Sync AI Assistant",
-    category: "IA",
+    title: "Gestion Petite Entreprise",
+    category: "App Web",
     description:
-      "Bot conversationnel intelligent intégré aux workflows Slack et Discord pour automatiser les tâches DevOps.",
-    techs: ["TypeScript", "OpenAI API", "AWS Lambda"],
+      "Application de gestion pour petites entreprises permettant la facturation, le suivi de stock, la gestion des clients, la notation des dépenses et un tableau de bord simple pour piloter l'activité au quotidien.",
+    techs: ["React", "TypeScript", "MUI", "Tailwind", "Supabase"],
     image:
-      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800",
-    link: "#",
-    github: "#",
+      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&q=80&w=800",
+    link: "https://gestion-entreprises-two.vercel.app/",
+    github: "https://github.com/lubain/gestion-entreprises",
+  },
+  {
+    title: "Arcade IA Strategique",
+    category: "Jeux Vidéo",
+    description:
+      "Développement d'une plateforme de jeux de stratégie (Tic-Tac-Toe, Fanorona Telo, Puissance 4) intégrant un moteur d'intelligence artificielle optimisé par l'algorithme d'élagage Alpha-Beta.",
+    techs: ["TypeScript", "Tailwind", "Zustand", "FastAPI"],
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800",
+    link: "https://arcare-ia-strategique.netlify.app/",
+    github: "https://github.com/lubain/Arcade-IA-Strategique",
   },
 ];

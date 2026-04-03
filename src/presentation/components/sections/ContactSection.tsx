@@ -56,13 +56,15 @@ const ContactSection: React.FC = () => {
                   </h4>
                   <div className="flex gap-4">
                     <a
-                      href="#"
+                      href="https://github.com/lubain"
+                      target="_blank"
                       className="w-12 h-12 rounded-full bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 hover:-translate-y-1 flex items-center justify-center border border-slate-200 dark:border-white/10 transition-all text-slate-700 dark:text-white"
                     >
                       <Github className="w-5 h-5" />
                     </a>
                     <a
-                      href="#"
+                      href="https://www.linkedin.com/in/zafindramanga-lubain-fadhel/"
+                      target="_blank"
                       className="w-12 h-12 rounded-full bg-slate-100 dark:bg-white/5 hover:bg-[#0077b5]/10 dark:hover:bg-[#0077b5]/20 hover:-translate-y-1 flex items-center justify-center border border-slate-200 dark:border-white/10 transition-all text-slate-700 dark:text-white hover:border-[#0077b5]/50 hover:text-[#0077b5] dark:hover:text-[#0077b5]"
                     >
                       <Linkedin className="w-5 h-5" />
