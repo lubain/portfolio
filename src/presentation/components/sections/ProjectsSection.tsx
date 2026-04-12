@@ -4,19 +4,33 @@ import { FadeIn } from "../ui/FadeIn";
 import { SpotlightCard } from "../ui/SpotlightCard";
 import { PROJECTS } from "@/presentation/shared/constantes/projets";
 import { useState } from "react";
+import { useNavbarStore } from "@/presentation/store/useNavbarStore";
+import {
+  projectCategoryLabels,
+  projectsSectionTranslations,
+  projectTranslations,
+} from "@/presentation/shared/constantes/translations";
+
+const categories: ProjectCategory[] = [
+  "Tous",
+  "App Web",
+  "Backend & API",
+  "IA",
+  "Jeux Vidéo",
+];
 
 const ProjectsSection = () => {
+  const language = useNavbarStore((state) => state.language);
+  const copy = projectsSectionTranslations[language];
+  const localizedProjects = PROJECTS.map((project, index) => ({
+    ...project,
+    ...projectTranslations[language][index],
+  }));
+
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>("Tous");
-  const filteredProjects = PROJECTS.filter(
-    (p) => activeFilter === "Tous" || p.category === activeFilter
+  const filteredProjects = localizedProjects.filter(
+    (project) => activeFilter === "Tous" || project.category === activeFilter
   );
-  const categories: ProjectCategory[] = [
-    "Tous",
-    "App Web",
-    "Backend & API",
-    "IA",
-    "Jeux Vidéo",
-  ];
 
   return (
     <section id="projets" className="py-24 px-6 relative">
@@ -25,25 +39,25 @@ const ProjectsSection = () => {
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8 flex items-center justify-between">
             <div>
               <span className="w-12 h-[2px] bg-blue-500 inline-block align-middle mr-4"></span>
-              Travaux Récents
+              {copy.title}
             </div>
           </h2>
         </FadeIn>
 
         <FadeIn delay={100}>
           <div className="flex flex-wrap gap-2 mb-12 overflow-x-auto hide-scrollbar pb-2">
-            {categories.map((cat) => (
+            {categories.map((category) => (
               <button
-                aria-label={`Filtrer par catégorie: ${cat}`}
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
+                aria-label={`${copy.filterAria}: ${projectCategoryLabels[category][language]}`}
+                key={category}
+                onClick={() => setActiveFilter(category)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
-                  activeFilter === cat
+                  activeFilter === category
                     ? "bg-purple-600 text-white shadow-lg shadow-purple-500/25"
                     : "bg-slate-200 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white border border-slate-300 dark:border-white/10"
                 }`}
               >
-                {cat}
+                {projectCategoryLabels[category][language]}
               </button>
             ))}
           </div>
@@ -51,7 +65,7 @@ const ProjectsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, idx) => (
-            <FadeIn key={project.title} delay={idx * 100}>
+            <FadeIn key={`${project.title}-${idx}`} delay={idx * 100}>
               <SpotlightCard className="group h-full flex flex-col">
                 <div className="relative overflow-hidden aspect-video">
                   <div className="absolute inset-0 bg-slate-900/10 dark:bg-slate-900/20 group-hover:bg-transparent transition duration-300 z-10"></div>
@@ -67,7 +81,7 @@ const ProjectsSection = () => {
                   />
                   <div className="absolute top-4 right-4 z-20">
                     <span className="px-3 py-1 text-xs font-semibold bg-white/90 dark:bg-black/50 backdrop-blur-md text-slate-900 dark:text-white rounded-full border border-slate-200 dark:border-white/20 shadow-sm">
-                      {project.category}
+                      {projectCategoryLabels[project.category][language]}
                     </span>
                   </div>
                 </div>
@@ -97,14 +111,14 @@ const ProjectsSection = () => {
                       target={`${project.github != "#" ? "_blank" : "_self"}`}
                       className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
                     >
-                      <Github className="w-4 h-4" /> Code
+                      <Github className="w-4 h-4" /> {copy.codeLabel}
                     </a>
                     <a
                       href={project.link}
                       target={`${project.link != "#" ? "_blank" : "_self"}`}
                       className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ml-auto"
                     >
-                      Live Demo <ExternalLink className="w-4 h-4" />
+                      {copy.liveDemoLabel} <ExternalLink className="w-4 h-4" />
                     </a>
                   </div>
                 </div>

@@ -6,10 +6,12 @@ export const useNavbar = () => {
   const mobileMenuOpen = useNavbarStore((state) => state.mobileMenuOpen);
   const isDarkMode = useNavbarStore((state) => state.isDarkMode);
   const activeSection = useNavbarStore((state) => state.activeSection);
+  const language = useNavbarStore((state) => state.language);
   const setMobileMenuOpen = useNavbarStore((state) => state.setMobileMenuOpen);
   const setIsScrolled = useNavbarStore((state) => state.setIsScrolled);
   const setIsDarkMode = useNavbarStore((state) => state.setIsDarkMode);
   const setActiveSection = useNavbarStore((state) => state.setActiveSection);
+  const setLanguage = useNavbarStore((state) => state.setLanguage);
 
   const themeBtnRef = useRef<HTMLButtonElement>(null);
 
@@ -132,14 +134,20 @@ export const useNavbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   return {
     isDarkMode,
     isScrolled,
     activeSection,
+    language,
     themeBtnRef,
     mobileMenuOpen,
     setMobileMenuOpen,
     setIsDarkMode,
+    setLanguage,
     toggleTheme,
   };
 };

@@ -1,18 +1,24 @@
 import { useNavbar } from "@/presentation/hooks/useNavbar";
 import { menuItems } from "@/presentation/shared/constantes/menuItems";
 import { Menu, Moon, Sun, Terminal, X } from "lucide-react";
+import LanguageSelector from "@/presentation/components/ui/LanguageSelector";
 
 const Navbar = () => {
   const {
     isDarkMode,
     isScrolled,
     activeSection,
+    language,
     themeBtnRef,
     mobileMenuOpen,
     setMobileMenuOpen,
     setIsDarkMode,
+    setLanguage,
     toggleTheme,
   } = useNavbar();
+
+  const localizedMenuItems = menuItems[language];
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -34,9 +40,8 @@ const Navbar = () => {
           </span>
         </a>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-          {menuItems.map((item) => (
+          {localizedMenuItems.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
@@ -47,7 +52,6 @@ const Navbar = () => {
               }`}
             >
               {item.name}
-              {/* Effet de surligne intelligent (rétrécit/élargit depuis le centre) */}
               <span
                 className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-purple-600 dark:bg-purple-500 transition-all duration-500 ease-in-out ${
                   activeSection === item.id
@@ -58,13 +62,14 @@ const Navbar = () => {
             </a>
           ))}
 
+          <LanguageSelector language={language} setLanguage={setLanguage} />
+
           <button
-            aria-label="Basculer le thème"
+            aria-label="Basculer le theme"
             ref={themeBtnRef}
             onClick={toggleTheme}
             className="relative p-2.5 rounded-full bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-white hover:scale-110 active:scale-90 transition-all group overflow-hidden"
           >
-            {/* Effet visuel discret de Sharingan au survol */}
             <div className="absolute inset-0 bg-red-500/0 group-hover:bg-red-500/5 transition-colors duration-300"></div>
             {isDarkMode ? (
               <Sun className="relative w-5 h-5" />
@@ -74,10 +79,15 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <div className="md:hidden flex items-center gap-4 relative z-10">
+          <LanguageSelector
+            language={language}
+            setLanguage={setLanguage}
+            compact
+          />
+
           <button
-            aria-label="Basculer le thème"
+            aria-label="Basculer le theme"
             onClick={() => setIsDarkMode(!isDarkMode)}
             className="p-2 rounded-full bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-white transition-all"
           >
@@ -101,14 +111,13 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       <div
         className={`md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#030712]/95 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 transition-all duration-300 overflow-hidden ${
           mobileMenuOpen ? "max-h-96 py-4" : "max-h-0 py-0 border-transparent"
         }`}
       >
         <div className="flex flex-col items-center gap-6">
-          {menuItems.map((item) => (
+          {localizedMenuItems.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}

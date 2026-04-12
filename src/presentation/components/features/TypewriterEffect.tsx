@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 
 interface TypewriterEffectProps {
-  texts?: string[];
+  texts?: readonly string[];
   speed?: number;
   deleteSpeed?: number;
   pauseDuration?: number;

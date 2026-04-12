@@ -1,8 +1,13 @@
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 import InfosContact from "@/presentation/components/features/InfosContact";
 import FormContact from "@/presentation/components/features/FormContact";
+import { useNavbarStore } from "@/presentation/store/useNavbarStore";
+import { contactSectionTranslations } from "@/presentation/shared/constantes/translations";
 
 const ContactSection: React.FC = () => {
+  const language = useNavbarStore((state) => state.language);
+  const copy = contactSectionTranslations[language];
+
   return (
     <section
       id="contact"
@@ -15,19 +20,15 @@ const ContactSection: React.FC = () => {
 
             <div className="text-center mb-10 relative z-10">
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-                Prêt à collaborer ?
+                {copy.title}
               </h2>
               <p className="text-slate-600 dark:text-slate-400">
-                Que ce soit pour un projet freelance, une offre d'emploi ou
-                simplement pour échanger sur la tech.
+                {copy.description}
               </p>
             </div>
 
             <div className="grid md:grid-cols-5 gap-12 relative z-10">
-              {/* Infos */}
               <InfosContact />
-
-              {/* Formulaire */}
               <FormContact />
             </div>
           </div>
