@@ -23,7 +23,7 @@ const HommeSection = () => {
             Développeur <br className="hidden md:block" />
             <span>
               <TypewriterEffect
-                texts={["Frontend", "Backend"]}
+                texts={["Frontend", "Backend", "Fullstack"]}
                 speed={150}
                 deleteSpeed={100}
                 pauseDuration={2000}
