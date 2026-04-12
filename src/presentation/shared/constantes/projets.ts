@@ -2,15 +2,26 @@ import { Project } from "../types/Projet";
 
 export const PROJECTS: Project[] = [
   {
-    title: "Speech to Text Malagasy",
-    category: "IA",
+    title: "Gestion Petite Entreprise",
+    category: "App Web",
     description:
-      "Projet de reconnaissance vocale pour la langue malgache, entraîné avec PyTorch et une étape de prétraitement audio pour le nettoyage, la normalisation et l'extraction des caractéristiques.",
-    techs: ["PyTorch", "Python", "Audio Preprocessing"],
+      "Application de gestion pour petites entreprises permettant la facturation, le suivi de stock, la gestion des clients, la notation des dépenses et un tableau de bord simple pour piloter l'activité au quotidien.",
+    techs: ["React", "TypeScript", "Tailwind", "NestJS"],
     image:
-      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=800",
-    link: "#",
-    github: "https://github.com/lubain/speech_to_text",
+      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&q=80&w=800",
+    link: "https://gestion-entreprises-one.vercel.app/",
+    github: "https://github.com/lubain/gestion-entreprises",
+  },
+  {
+    title: "Arcade IA Strategique",
+    category: "Jeux Vidéo",
+    description:
+      "Développement d'une plateforme de jeux de stratégie (Tic-Tac-Toe, Fanorona Telo, Puissance 4) intégrant un moteur d'intelligence artificielle optimisé par l'algorithme d'élagage Alpha-Beta.",
+    techs: ["TypeScript", "Tailwind", "Zustand", "FastAPI"],
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800",
+    link: "https://arcare-ia-strategique.netlify.app/",
+    github: "https://github.com/lubain/Arcade-IA-Strategique",
   },
   {
     title: "SolfaML",
@@ -46,25 +57,14 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/k-hubs-k/Chat-App",
   },
   {
-    title: "Gestion Petite Entreprise",
-    category: "App Web",
+    title: "Speech to Text Malagasy",
+    category: "IA",
     description:
-      "Application de gestion pour petites entreprises permettant la facturation, le suivi de stock, la gestion des clients, la notation des dépenses et un tableau de bord simple pour piloter l'activité au quotidien.",
-    techs: ["React", "TypeScript", "MUI", "Tailwind", "Supabase"],
+      "Projet de reconnaissance vocale pour la langue malgache, entraîné avec PyTorch et une étape de prétraitement audio pour le nettoyage, la normalisation et l'extraction des caractéristiques.",
+    techs: ["PyTorch", "Python", "Audio Preprocessing"],
     image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&q=80&w=800",
-    link: "https://gestion-entreprises-two.vercel.app/",
-    github: "https://github.com/lubain/gestion-entreprises",
-  },
-  {
-    title: "Arcade IA Strategique",
-    category: "Jeux Vidéo",
-    description:
-      "Développement d'une plateforme de jeux de stratégie (Tic-Tac-Toe, Fanorona Telo, Puissance 4) intégrant un moteur d'intelligence artificielle optimisé par l'algorithme d'élagage Alpha-Beta.",
-    techs: ["TypeScript", "Tailwind", "Zustand", "FastAPI"],
-    image:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800",
-    link: "https://arcare-ia-strategique.netlify.app/",
-    github: "https://github.com/lubain/Arcade-IA-Strategique",
+      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=800",
+    link: "#",
+    github: "https://github.com/lubain/speech_to_text",
   },
 ];
