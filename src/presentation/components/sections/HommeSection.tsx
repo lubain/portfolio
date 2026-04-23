@@ -1,4 +1,4 @@
-import { Github, ChevronRight, MapPin } from "lucide-react";
+import { Github, ChevronRight, MapPin, Download } from "lucide-react";
 import TypewriterEffect from "@/presentation/components/features/TypewriterEffect";
 import { FadeIn } from "../ui/FadeIn";
 import { useNavbarStore } from "@/presentation/store/useNavbarStore";
@@ -68,27 +68,34 @@ const HommeSection = () => {
                 >
                   <Github className="w-5 h-5" /> {copy.githubCta}
                 </a>
+                <a
+                  href="/cv-lubain-fadhel.pdf"
+                  download
+                  className="px-8 py-4 rounded-full border border-purple-400 dark:border-purple-500/60 text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-500/10 font-semibold transition-all hover:scale-105 active:scale-95 w-full sm:w-auto flex justify-center items-center gap-2"
+                >
+                  <Download className="w-5 h-5" /> {copy.cvCta}
+                </a>
               </div>
             </FadeIn>
           </div>
 
-          {/* ── Photo de profil ── */}
           <FadeIn delay={200}>
             <div className="relative flex-shrink-0">
-              {/* Anneau animé */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 via-purple-400 to-blue-500 animate-spin [animation-duration:8s] p-[3px]" />
-
-              {/* Conteneur image */}
               <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full p-[3px] bg-gradient-to-br from-purple-500 to-blue-500">
                 <div className="w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-[#0a0f1d]">
                   <img
-                    src="./profile.jpg"
-                    alt="Photo de profil de Fadhel Ubain"
+                    src="/profile.jpg"
+                    alt="Photo de profil de Lubain Fadhel"
+                    width={288}
+                    height={288}
+                    fetchPriority="high"
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover object-center"
                   />
                 </div>
               </div>
-
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 shadow-md dark:shadow-none text-xs font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 {language === "fr" ? "Disponible" : "Available"}

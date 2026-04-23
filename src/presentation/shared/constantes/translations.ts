@@ -11,6 +11,7 @@ export const homeSectionTranslations = {
       "Je cree des experiences numeriques modernes et performantes qui transforment vos idees en solutions innovantes.",
     projectsCta: "Voir mes projets",
     githubCta: "Mon GitHub",
+    cvCta: "Télécharger mon CV",
   },
   en: {
     badge: "Available for new opportunities",
@@ -20,6 +21,7 @@ export const homeSectionTranslations = {
       "I build modern, high-performance digital experiences that turn your ideas into innovative solutions.",
     projectsCta: "View my projects",
     githubCta: "My GitHub",
+    cvCta: "Download my CV",
   },
 } as const;
 
