@@ -6,7 +6,6 @@ import {
   SiNodedotjs,
   SiExpress,
   SiSocketdotio,
-  SiFastapi,
   SiPostgresql,
   SiMongodb,
   SiDocker,
@@ -14,8 +13,13 @@ import {
   SiGithubactions,
   SiGithub,
   SiMysql,
+  SiNestjs,
+  SiGraphql,
+  SiSupabase,
+  SiRender,
+  SiMui,
 } from "react-icons/si";
-import { Server, Database, Layout, Terminal } from "lucide-react";
+import { Server, Database, Terminal, Layout } from "lucide-react";
 
 export const SKILLS = [
   {
@@ -38,6 +42,10 @@ export const SKILLS = [
         name: "Framer Motion",
         icon: <SiFramer className="w-4 h-4 text-pink-500" />,
       },
+      {
+        name: "Material UI",
+        icon: <SiMui className="w-4 h-4 text-pink-500" />,
+      },
     ],
   },
   {
@@ -53,12 +61,16 @@ export const SKILLS = [
         icon: <SiExpress className="w-4 h-4 text-slate-500" />,
       },
       {
-        name: "WebSockets",
-        icon: <SiSocketdotio className="w-4 h-4 text-slate-500" />,
+        name: "NestJS",
+        icon: <SiNestjs className="w-4 h-4 text-emerald-500" />,
       },
       {
-        name: "FastAPI",
-        icon: <SiFastapi className="w-4 h-4 text-slate-500" />,
+        name: "GraphQL",
+        icon: <SiGraphql className="w-4 h-4 text-slate-500" />,
+      },
+      {
+        name: "WebSockets",
+        icon: <SiSocketdotio className="w-4 h-4 text-slate-500" />,
       },
     ],
   },
@@ -77,6 +89,10 @@ export const SKILLS = [
       {
         name: "MySQL",
         icon: <SiMysql className="w-4 h-4 text-emerald-500" />,
+      },
+      {
+        name: "Supabase",
+        icon: <SiSupabase className="w-4 h-4 text-emerald-500" />,
       },
     ],
   },
@@ -99,6 +115,10 @@ export const SKILLS = [
       {
         name: "Git / GitHub",
         icon: <SiGithub className="w-4 h-4 text-slate-700" />,
+      },
+      {
+        name: "Render",
+        icon: <SiRender className="w-4 h-4 text-slate-700" />,
       },
     ],
   },

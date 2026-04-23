@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useMemo, useState, useEffect } from "react";
 
 interface TypewriterEffectProps {
-  texts?: string[];
+  texts?: readonly string[];
   speed?: number;
   deleteSpeed?: number;
   pauseDuration?: number;
@@ -16,6 +15,13 @@ const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
   pauseDuration = 1500,
   className = "",
 }) => {
+  const longestText = useMemo(() => {
+    if (texts.length === 0) return "";
+    return texts.reduce((longest, current) =>
+      current.length > longest.length ? current : longest
+    );
+  }, [texts]);
+
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -37,14 +43,14 @@ const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
         if (isDeleting) {
           setCurrentText(fullText.substring(0, currentText.length - 1));
 
-          if (currentText === "") {
+          if (currentText.length === 0) {
             setIsDeleting(false);
             setCurrentTextIndex((prev) => (prev + 1) % texts.length);
           }
         } else {
           setCurrentText(fullText.substring(0, currentText.length + 1));
 
-          if (currentText === fullText) {
+          if (currentText.length === fullText.length) {
             setIsPaused(true);
           }
         }
@@ -65,13 +71,12 @@ const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
   ]);
 
   return (
-    <span className={className}>
-      {currentText}
-      <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className="inline-block w-0.5 h-6 bg-primary ml-1"
-      />
+    <span className={`relative inline-block align-baseline ${className}`}>
+      <span className="invisible whitespace-nowrap">{longestText}</span>
+      <span className={`absolute left-0 top-0 whitespace-nowrap ${className}`}>
+        {currentText}
+        <span className="typewriter-cursor inline-block w-0.5 h-6 bg-primary ml-1" />
+      </span>
     </span>
   );
 };

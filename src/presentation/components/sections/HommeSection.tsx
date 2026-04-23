@@ -1,62 +1,101 @@
-import { Github, ChevronRight, Sparkles } from "lucide-react";
+import { Github, ChevronRight, MapPin } from "lucide-react";
 import TypewriterEffect from "@/presentation/components/features/TypewriterEffect";
 import { FadeIn } from "../ui/FadeIn";
+import { useNavbarStore } from "@/presentation/store/useNavbarStore";
+import { homeSectionTranslations } from "@/presentation/shared/constantes/translations";
 
 const HommeSection = () => {
+  const language = useNavbarStore((state) => state.language);
+  const copy = homeSectionTranslations[language];
+
   return (
     <section
       id="accueil"
       className="min-h-screen flex items-center justify-center pt-20 px-6"
     >
-      <div className="max-w-4xl mx-auto text-center">
-        <FadeIn>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-8 backdrop-blur-sm shadow-sm dark:shadow-none">
-            <Sparkles className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-            <span className="text-sm font-medium text-purple-800 dark:text-purple-200">
-              Disponible pour de nouvelles opportunités
-            </span>
+      <div className="max-w-5xl mx-auto w-full">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-16">
+          {/* ── Texte ── */}
+          <div className="flex-1 text-center md:text-left">
+            {/* <FadeIn>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-8 backdrop-blur-sm shadow-sm dark:shadow-none">
+                <Sparkles className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                <span className="text-sm font-medium text-purple-800 dark:text-purple-200">
+                  {copy.badge}
+                </span>
+              </div>
+            </FadeIn> */}
+
+            <FadeIn delay={150}>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4 leading-tight">
+                {copy.titlePrefix}
+                <br />
+                <span>
+                  <TypewriterEffect
+                    texts={copy.roles}
+                    speed={150}
+                    deleteSpeed={100}
+                    pauseDuration={2000}
+                    className="text-gradient"
+                  />
+                </span>
+              </h1>
+            </FadeIn>
+
+            <FadeIn delay={300}>
+              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-3 max-w-xl leading-relaxed">
+                {copy.description}
+              </p>
+              <div className="flex items-center justify-center md:justify-start gap-1.5 text-sm text-slate-500 dark:text-slate-500 mb-8">
+                <MapPin className="w-4 h-4" />
+                <span>Antananarivo, Madagascar · Remote</span>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={450}>
+              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                <a
+                  href="#projets"
+                  className="px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-all hover:scale-105 active:scale-95 w-full sm:w-auto flex justify-center items-center gap-2 shadow-[0_0_30px_-5px_rgba(139,92,246,0.5)]"
+                >
+                  {copy.projectsCta} <ChevronRight className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://github.com/lubain"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-8 py-4 rounded-full bg-slate-200 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white font-semibold transition-all hover:scale-105 active:scale-95 w-full sm:w-auto flex justify-center items-center gap-2"
+                >
+                  <Github className="w-5 h-5" /> {copy.githubCta}
+                </a>
+              </div>
+            </FadeIn>
           </div>
-        </FadeIn>
 
-        <FadeIn delay={150}>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
-            Développeur <br className="hidden md:block" />
-            <span className="text-gradient">
-              <TypewriterEffect
-                texts={["Frontend", "Backend"]}
-                speed={150}
-                deleteSpeed={100}
-                pauseDuration={2000}
-              />
-            </span>
-          </h1>
-        </FadeIn>
+          {/* ── Photo de profil ── */}
+          <FadeIn delay={200}>
+            <div className="relative flex-shrink-0">
+              {/* Anneau animé */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 via-purple-400 to-blue-500 animate-spin [animation-duration:8s] p-[3px]" />
 
-        <FadeIn delay={300}>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Je crée des expériences numériques modernes et performantes qui
-            transforment vos idées en solutions innovantes.
-          </p>
-        </FadeIn>
+              {/* Conteneur image */}
+              <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full p-[3px] bg-gradient-to-br from-purple-500 to-blue-500">
+                <div className="w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-[#0a0f1d]">
+                  <img
+                    src="./profile.jpg"
+                    alt="Photo de profil de Fadhel Ubain"
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+              </div>
 
-        <FadeIn delay={450}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#projets"
-              className="px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-all hover:scale-105 active:scale-95 w-full sm:w-auto flex justify-center items-center gap-2 shadow-[0_0_30px_-5px_rgba(139,92,246,0.5)]"
-            >
-              Voir mes projets <ChevronRight className="w-5 h-5" />
-            </a>
-            <a
-              href="https://github.com/lubain"
-              target="_blank"
-              rel="noreferrer"
-              className="px-8 py-4 rounded-full bg-slate-200 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white font-semibold transition-all hover:scale-105 active:scale-95 w-full sm:w-auto flex justify-center items-center gap-2"
-            >
-              <Github className="w-5 h-5" /> Mon GitHub
-            </a>
-          </div>
-        </FadeIn>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 shadow-md dark:shadow-none text-xs font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                {language === "fr" ? "Disponible" : "Available"}
+              </div>
+            </div>
+          </FadeIn>
+        </div>
       </div>
     </section>
   );

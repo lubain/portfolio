@@ -1,8 +1,13 @@
 import { FadeIn } from "../ui/FadeIn";
 import { SpotlightCard } from "../ui/SpotlightCard";
 import { SKILLS } from "@/presentation/shared/constantes/skills";
+import { useNavbarStore } from "@/presentation/store/useNavbarStore";
+import { skillsSectionTranslations } from "@/presentation/shared/constantes/translations";
 
 const SkillsSection = () => {
+  const language = useNavbarStore((state) => state.language);
+  const copy = skillsSectionTranslations[language];
+
   return (
     <section
       id="compétences"
@@ -12,11 +17,10 @@ const SkillsSection = () => {
         <FadeIn>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-              Arsenal Technologique
+              {copy.title}
             </h2>
             <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              Une maîtrise complète de l'écosystème JavaScript/TypeScript, du
-              navigateur jusqu'à l'infrastructure cloud.
+              {copy.description}
             </p>
           </div>
         </FadeIn>
@@ -29,7 +33,7 @@ const SkillsSection = () => {
                   {category.icon}
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                  {category.title}
+                  {copy.categories[idx] ?? category.title}
                 </h3>
                 <ul className="space-y-3">
                   {category.skills.map((skill) => (
