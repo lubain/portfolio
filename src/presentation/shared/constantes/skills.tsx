@@ -9,15 +9,16 @@ import {
   SiPostgresql,
   SiMongodb,
   SiDocker,
-  SiVercel,
   SiGithubactions,
   SiGithub,
   SiMysql,
   SiNestjs,
   SiGraphql,
   SiSupabase,
-  SiRender,
   SiMui,
+  SiRedis,
+  SiPostman,
+  SiCloudinary,
 } from "react-icons/si";
 import { Server, Database, Terminal, Layout } from "lucide-react";
 
@@ -94,6 +95,10 @@ export const SKILLS = [
         name: "Supabase",
         icon: <SiSupabase className="w-4 h-4 text-emerald-500" />,
       },
+      {
+        name: "Redis",
+        icon: <SiRedis className="w-4 h-4 text-emerald-500" />,
+      },
     ],
   },
   {
@@ -105,8 +110,8 @@ export const SKILLS = [
         icon: <SiDocker className="w-4 h-4 text-sky-500" />,
       },
       {
-        name: "AWS / Vercel",
-        icon: <SiVercel className="w-4 h-4 text-slate-500" />,
+        name: "Cloudinary",
+        icon: <SiCloudinary className="w-4 h-4 text-slate-500" />,
       },
       {
         name: "CI/CD (Actions)",
@@ -117,8 +122,8 @@ export const SKILLS = [
         icon: <SiGithub className="w-4 h-4 text-slate-700" />,
       },
       {
-        name: "Render",
-        icon: <SiRender className="w-4 h-4 text-slate-700" />,
+        name: "Postman",
+        icon: <SiPostman className="w-4 h-4 text-slate-700" />,
       },
     ],
   },

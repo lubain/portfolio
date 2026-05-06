@@ -4,7 +4,7 @@ export const PROJECTS: Project[] = [
   {
     id: "chat-app",
     category: "App Web",
-    techs: ["React", "Nest", "Redis", "Socket.io", "Docker"],
+    techs: ["React", "NestJS", "Redis", "Socket.io", "Docker"],
     image:
       "https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&q=80&w=800",
     link: "https://chat-app-xi-teal.vercel.app",
