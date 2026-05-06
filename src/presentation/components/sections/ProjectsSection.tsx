@@ -2,8 +2,8 @@ import { ExternalLink, Github } from "lucide-react";
 import { ProjectCategory } from "@/presentation/shared/types/ProjectCategory";
 import { FadeIn } from "../ui/FadeIn";
 import { SpotlightCard } from "../ui/SpotlightCard";
-import { PROJECTS } from "@/presentation/shared/constantes/projets";
 import { useState } from "react";
+import { PROJECTS } from "@/presentation/shared/constantes/projets";
 import { useNavbarStore } from "@/presentation/store/useNavbarStore";
 import {
   projectCategoryLabels,
@@ -22,9 +22,11 @@ const categories: ProjectCategory[] = [
 const ProjectsSection = () => {
   const language = useNavbarStore((state) => state.language);
   const copy = projectsSectionTranslations[language];
-  const localizedProjects = PROJECTS.map((project, index) => ({
+  const localizedProjects = PROJECTS.map((project) => ({
     ...project,
-    ...projectTranslations[language][index],
+    ...projectTranslations[language][
+      project.id as keyof (typeof projectTranslations)[typeof language]
+    ],
   }));
 
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>("Tous");
@@ -65,7 +67,7 @@ const ProjectsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, idx) => (
-            <FadeIn key={`${project.title}-${idx}`} delay={idx * 100}>
+            <FadeIn key={`${project.id}-${idx}`} delay={idx * 100}>
               <SpotlightCard className="group h-full flex flex-col">
                 <div className="relative overflow-hidden aspect-video">
                   <div className="absolute inset-0 bg-slate-900/10 dark:bg-slate-900/20 group-hover:bg-transparent transition duration-300 z-10"></div>
@@ -108,7 +110,7 @@ const ProjectsSection = () => {
                   <div className="flex items-center gap-4 mt-auto pt-4 border-t border-slate-200 dark:border-white/10">
                     <a
                       href={project.github}
-                      target={`${project.github != "#" ? "_blank" : "_self"}`}
+                      target="_blank"
                       className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
                     >
                       <Github className="w-4 h-4" /> {copy.codeLabel}

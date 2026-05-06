@@ -1,3 +1,4 @@
+import { ProjectTranslation } from "../types/Projet";
 import { ProjectCategory } from "../types/ProjectCategory";
 
 export type Language = "fr" | "en";
@@ -11,7 +12,7 @@ export const homeSectionTranslations = {
       "Je cree des experiences numeriques modernes et performantes qui transforment vos idees en solutions innovantes.",
     projectsCta: "Voir mes projets",
     githubCta: "Mon GitHub",
-    cvCta: "Télécharger mon CV",
+    cvCta: "TÃ©lÃ©charger mon CV",
   },
   en: {
     badge: "Available for new opportunities",
@@ -129,71 +130,71 @@ export const projectsSectionTranslations = {
 } as const;
 
 export const projectTranslations = {
-  fr: [
-    {
+  fr: {
+    "gestion-petite-entreprise": {
       title: "Gestion Petite Entreprise",
       description:
         "Application de gestion pour petites entreprises permettant la facturation, le suivi de stock, la gestion des clients, la notation des depenses et un tableau de bord simple pour piloter l'activite au quotidien.",
     },
-    {
+    "arcade-ia-strategique": {
       title: "Arcade IA Strategique",
       description:
         "Developpement d'une plateforme de jeux de strategie integrant un moteur d'intelligence artificielle optimise par l'algorithme d'elagage Alpha-Beta.",
     },
-    {
+    solfaml: {
       title: "SolfaML",
       description:
         "Editeur de partitions musicales concu pour la composition et l'edition fluide, avec React et Tailwind pour l'interface, Zustand pour la gestion d'etat et Rust pour la logique de compilation.",
     },
-    {
+    "coregateway-microservices": {
       title: "CoreGateway Microservices",
       description:
         "Architecture orientee microservices gerant l'authentification OAuth2, le rate-limiting et le routage des requetes haute performance.",
     },
-    {
+    "chat-app": {
       title: "Chat-app",
       description:
         "Systeme de messagerie instantane developpe avec React et Tailwind pour l'interface, Node.js pour le backend et Socket pour la communication en temps reel.",
     },
-    {
+    "speech-to-text-malagasy": {
       title: "Speech to Text Malagasy",
       description:
         "Projet de reconnaissance vocale pour la langue malgache, entraine avec PyTorch et une etape de pretraitement audio pour le nettoyage, la normalisation et l'extraction des caracteristiques.",
     },
-  ],
-  en: [
-    {
+  },
+  en: {
+    "gestion-petite-entreprise": {
       title: "Small Business Manager",
       description:
         "A management app for small businesses covering invoicing, inventory tracking, client management, expense logging, and a simple dashboard for daily operations.",
     },
-    {
+    "arcade-ia-strategique": {
       title: "Strategic AI Arcade",
       description:
         "A strategy game platform featuring Tic-Tac-Toe, Fanorona Telo, and Connect Four with an AI engine optimized through Alpha-Beta pruning.",
     },
-    {
+    solfaml: {
       title: "SolfaML",
       description:
         "A music score editor built for fluid composition and editing, using React and Tailwind for the interface, Zustand for state management, and Rust for compilation logic.",
     },
-    {
+    "coregateway-microservices": {
       title: "CoreGateway Microservices",
       description:
         "A microservices-oriented architecture handling OAuth2 authentication, rate limiting, and high-performance request routing.",
     },
-    {
+    "chat-app": {
       title: "Chat App",
       description:
         "A real-time messaging system built with React and Tailwind for the interface, Node.js for the backend, and Socket for live communication.",
     },
-    {
+    "speech-to-text-malagasy": {
       title: "Malagasy Speech to Text",
       description:
         "A speech recognition project for the Malagasy language, trained with PyTorch and supported by audio preprocessing for cleaning, normalization, and feature extraction.",
     },
-  ],
-} as const;
+  },
+} as const satisfies Record<Language, Record<string, ProjectTranslation>>;
 
 export const contactSectionTranslations = {
   fr: {
