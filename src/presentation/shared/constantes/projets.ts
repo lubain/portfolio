@@ -53,8 +53,8 @@ export const PROJECTS: Project[] = [
     techs: ["React", "Node.js", "Express", "Socket.io"],
     image:
       "https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&q=80&w=800",
-    link: "#",
-    github: "https://github.com/k-hubs-k/Chat-App",
+    link: "https://chat-app-xi-teal.vercel.app",
+    github: "https://github.com/lubain/chat-app",
   },
   {
     title: "Speech to Text Malagasy",
