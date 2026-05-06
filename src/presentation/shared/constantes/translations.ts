@@ -12,7 +12,7 @@ export const homeSectionTranslations = {
       "Je cree des experiences numeriques modernes et performantes qui transforment vos idees en solutions innovantes.",
     projectsCta: "Voir mes projets",
     githubCta: "Mon GitHub",
-    cvCta: "TÃ©lÃ©charger mon CV",
+    cvCta: "Télécharger mon CV",
   },
   en: {
     badge: "Available for new opportunities",
