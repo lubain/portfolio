@@ -1,11 +1,15 @@
 import { ProjectCategory } from "./ProjectCategory";
 
 export interface Project {
-  title: string;
+  id: string;
   category: ProjectCategory;
-  description: string;
   techs: string[];
   image: string;
   link: string;
   github: string;
+}
+
+export interface ProjectTranslation {
+  title: string;
+  description: string;
 }
