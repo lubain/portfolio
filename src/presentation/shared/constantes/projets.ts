@@ -20,13 +20,13 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/lubain/gestion-entreprises",
   },
   {
-    id: "arcade-ia-strategique",
+    id: "strategy-ia-games",
     category: "Jeux Vidéo",
     techs: ["TypeScript", "Tailwind", "Zustand", "FastAPI"],
     image:
       "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800",
-    link: "https://arcare-ia-strategique.netlify.app/",
-    github: "https://github.com/lubain/Arcade-IA-Strategique",
+    link: "https://strategy-ia-games.netlify.app",
+    github: "https://github.com/lubain/strategy-ai-games",
   },
   {
     id: "solfaml",
