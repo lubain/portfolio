@@ -1,4 +1,4 @@
-import { FadeIn } from "../ui/FadeIn";
+import { FadeIn } from "@/presentation/components/ui/FadeIn";
 import { timeline } from "@/presentation/shared/constantes/timeline";
 import { useNavbarStore } from "@/presentation/store/useNavbarStore";
 import {
