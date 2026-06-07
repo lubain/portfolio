@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
 
 const CELL = 40;
-const RADIUS = 130; // rayon du glow en px
-const FADE = 0.87; // atténuation par frame
-const RISE = 0.2; // vitesse de montée
-const BLUE_R = 96;
-const BLUE_G = 165;
-const BLUE_B = 250; // blue-400
+const RADIUS = 130;
+const FADE = 0.87;
+const RISE = 0.2;
+// Arctic Frost — cyan #38bdf8
+const BLUE_R = 56,
+  BLUE_G = 189,
+  BLUE_B = 248;
 
 const Background = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -14,8 +15,6 @@ const Background = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
-    // Récupère le contexte immédiatement
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -26,7 +25,6 @@ const Background = () => {
     let mx = -9999,
       my = -9999;
 
-    // ── Dimensions ────────────────────────────────────────────────────────────
     const setSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -36,7 +34,6 @@ const Background = () => {
     };
     setSize();
 
-    // ── Souris (sur window pour capter partout) ───────────────────────────────
     const onMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
@@ -49,47 +46,36 @@ const Background = () => {
     window.addEventListener("mouseleave", onLeave);
     window.addEventListener("resize", setSize);
 
-    // ── Boucle RAF ────────────────────────────────────────────────────────────
     const loop = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       for (let c = 0; c < cols; c++) {
         for (let r = 0; r < rows; r++) {
-          // Centre de la cellule en coordonnées écran
           const cx = c * CELL + CELL * 0.5;
           const cy = r * CELL + CELL * 0.5;
           const dist = Math.hypot(cx - mx, cy - my);
           const target = dist < RADIUS ? (1 - dist / RADIUS) ** 2 : 0;
-
           const idx = c * rows + r;
-          // Lerp : montée rapide, descente lente
           bright[idx] =
             target > bright[idx]
               ? bright[idx] + (target - bright[idx]) * RISE
               : bright[idx] * FADE;
-
           const b = bright[idx];
           if (b < 0.004) continue;
-
-          const x = c * CELL;
-          const y = r * CELL;
-          const alpha = b * 0.8;
-
+          const x = c * CELL,
+            y = r * CELL;
+          const alpha = b * 0.75;
           ctx.strokeStyle = `rgba(${BLUE_R},${BLUE_G},${BLUE_B},${alpha})`;
           ctx.lineWidth = 0.8 + b * 0.9;
-
           ctx.beginPath();
           ctx.moveTo(x, y);
-          ctx.lineTo(x + CELL, y); // bord haut
+          ctx.lineTo(x + CELL, y);
           ctx.moveTo(x, y);
-          ctx.lineTo(x, y + CELL); // bord gauche
+          ctx.lineTo(x, y + CELL);
           ctx.stroke();
         }
       }
-
       raf = requestAnimationFrame(loop);
     };
-
     raf = requestAnimationFrame(loop);
 
     return () => {
@@ -102,13 +88,16 @@ const Background = () => {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="blob bg-purple-600 w-96 h-96 rounded-full top-[-10%] left-[-10%]" />
+      {/* Blob cyan top-left */}
       <div
-        className="blob bg-blue-600 w-96 h-96 rounded-full bottom-[-10%] right-[-10%]"
-        style={{ animationDelay: "-5s" }}
+        className="blob w-96 h-96 rounded-full top-[-10%] left-[-10%]"
+        style={{ background: "#38bdf8" }}
       />
-
-      {/* canvas : position fixed, taille forcée via JS, z-index au-dessus des blobs */}
+      {/* Blob indigo bottom-right */}
+      <div
+        className="blob w-96 h-96 rounded-full bottom-[-10%] right-[-10%]"
+        style={{ background: "#818cf8", animationDelay: "-5s" }}
+      />
       <canvas
         ref={canvasRef}
         style={{
