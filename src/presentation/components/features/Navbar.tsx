@@ -34,9 +34,8 @@ const Navbar = () => {
         >
           <Terminal className="w-6 h-6 text-purple-600 dark:text-purple-500" />
           <span>
-            Lub
-            <span className="text-purple-600 dark:text-purple-500">.</span>
-            ain
+            Fadhel
+            <span className="text-purple-600 dark:text-purple-500"> . </span>Z
           </span>
         </a>
 
