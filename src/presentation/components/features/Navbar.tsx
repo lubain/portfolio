@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/80 dark:bg-[#030712]/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 py-4"
+          ? "bg-[#f0f9ff]/80 dark:bg-[#05111f]/80 backdrop-blur-md border-b border-sky-200 dark:border-sky-900/40 py-4"
           : "bg-transparent py-6"
       }`}
     >
@@ -32,11 +32,10 @@ const Navbar = () => {
           href="#"
           className="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white flex items-center gap-2 relative z-10"
         >
-          <Terminal className="w-6 h-6 text-purple-600 dark:text-purple-500" />
+          <Terminal className="w-6 h-6 text-sky-500 dark:text-sky-400" />
           <span>
-            Lub
-            <span className="text-purple-600 dark:text-purple-500">.</span>
-            ain
+            Fadhel
+            <span className="text-sky-500 dark:text-sky-400"> . </span>Z
           </span>
         </a>
 
@@ -47,18 +46,18 @@ const Navbar = () => {
               href={`#${item.id}`}
               className={`relative py-1 transition-colors duration-300 ${
                 activeSection === item.id
-                  ? "text-purple-600 dark:text-purple-400"
-                  : "text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400"
+                  ? "text-sky-500 dark:text-sky-400"
+                  : "text-slate-600 dark:text-sky-200/70 hover:text-sky-500 dark:hover:text-sky-400"
               }`}
             >
               {item.name}
               <span
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-purple-600 dark:bg-purple-500 transition-all duration-500 ease-in-out ${
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-sky-500 dark:bg-sky-400 transition-all duration-500 ease-in-out ${
                   activeSection === item.id
                     ? "w-full opacity-100"
                     : "w-0 opacity-0"
                 }`}
-              ></span>
+              />
             </a>
           ))}
 
@@ -68,9 +67,8 @@ const Navbar = () => {
             aria-label="Basculer le theme"
             ref={themeBtnRef}
             onClick={toggleTheme}
-            className="relative p-2.5 rounded-full bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-white hover:scale-110 active:scale-90 transition-all group overflow-hidden"
+            className="relative p-2.5 rounded-full bg-sky-100 dark:bg-sky-900/30 text-slate-700 dark:text-sky-200 hover:scale-110 active:scale-90 transition-all overflow-hidden border border-sky-200 dark:border-sky-700/40"
           >
-            <div className="absolute inset-0 bg-red-500/0 group-hover:bg-red-500/5 transition-colors duration-300"></div>
             {isDarkMode ? (
               <Sun className="relative w-5 h-5" />
             ) : (
@@ -85,11 +83,10 @@ const Navbar = () => {
             setLanguage={setLanguage}
             compact
           />
-
           <button
             aria-label="Basculer le theme"
             onClick={() => setIsDarkMode(!isDarkMode)}
-            className="p-2 rounded-full bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-white transition-all"
+            className="p-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-slate-700 dark:text-sky-200 transition-all"
           >
             {isDarkMode ? (
               <Sun className="w-5 h-5" />
@@ -99,7 +96,7 @@ const Navbar = () => {
           </button>
           <button
             aria-label="Menu mobile"
-            className="p-2 text-slate-900 dark:text-white"
+            className="p-2 text-slate-900 dark:text-sky-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -112,7 +109,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#030712]/95 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 transition-all duration-300 overflow-hidden ${
+        className={`md:hidden absolute top-full left-0 w-full bg-[#f0f9ff]/95 dark:bg-[#05111f]/95 backdrop-blur-xl border-b border-sky-200 dark:border-sky-900/40 transition-all duration-300 overflow-hidden ${
           mobileMenuOpen ? "max-h-96 py-4" : "max-h-0 py-0 border-transparent"
         }`}
       >
@@ -124,8 +121,8 @@ const Navbar = () => {
               onClick={() => setMobileMenuOpen(false)}
               className={`text-lg font-medium transition-colors ${
                 activeSection === item.id
-                  ? "text-purple-600 dark:text-purple-400"
-                  : "text-slate-800 dark:text-slate-300"
+                  ? "text-sky-500 dark:text-sky-400"
+                  : "text-slate-800 dark:text-sky-200"
               }`}
             >
               {item.name}

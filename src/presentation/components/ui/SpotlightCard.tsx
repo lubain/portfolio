@@ -14,8 +14,7 @@ export const SpotlightCard = ({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!divRef.current || isFocused) return;
-    const div = divRef.current;
-    const rect = div.getBoundingClientRect();
+    const rect = divRef.current.getBoundingClientRect();
     setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
@@ -23,14 +22,12 @@ export const SpotlightCard = ({
     setIsFocused(true);
     setOpacity(1);
   };
-
   const handleBlur = () => {
     setIsFocused(false);
     setOpacity(0);
   };
-
-  const handleMouseEnter = () => setOpacity(1);
-  const handleMouseLeave = () => setOpacity(0);
+  const handleEnter = () => setOpacity(1);
+  const handleLeave = () => setOpacity(0);
 
   return (
     <div
@@ -38,15 +35,17 @@ export const SpotlightCard = ({
       onMouseMove={handleMouseMove}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/30 dark:hover:border-white/20 shadow-sm dark:shadow-none ${className}`}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      className={`relative overflow-hidden rounded-2xl border border-sky-200 dark:border-sky-800/40
+                  bg-white/70 dark:bg-sky-950/30 backdrop-blur-sm transition-all duration-300
+                  hover:border-sky-400/50 dark:hover:border-sky-500/40 shadow-sm dark:shadow-none ${className}`}
     >
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
         style={{
           opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(139, 92, 246, 0.15), transparent 40%)`,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56,189,248,0.12), transparent 40%)`,
         }}
       />
       {children}
