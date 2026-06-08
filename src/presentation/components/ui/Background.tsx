@@ -198,8 +198,6 @@ const Background = () => {
 
       // ── Rendu ────────────────────────────────────────────────────────
       for (const { col, row, idx, z } of cells) {
-        const cx = col * CELL + CELL * 0.5;
-        const cy = row * CELL + CELL * 0.5;
         const b = bright[idx] * gAlpha;
         const hasZ = z > 0.3;
 
