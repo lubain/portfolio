@@ -54,12 +54,12 @@ const LanguageSelector = ({
         onClick={() => setOpen((o) => !o)}
         className={`
           group flex items-center gap-1.5 rounded-full border
-          border-slate-300 dark:border-white/10
-          bg-white/80 dark:bg-white/10
-          text-slate-700 dark:text-white
-          hover:border-purple-400 dark:hover:border-purple-500
-          hover:bg-purple-50 dark:hover:bg-purple-500/10
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500
+          border-sky-200 dark:border-sky-700/40
+          bg-sky-50/80 dark:bg-sky-900/20
+          text-slate-700 dark:text-sky-100
+          hover:border-sky-400 dark:hover:border-sky-500
+          hover:bg-sky-100 dark:hover:bg-sky-800/30
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400
           transition-all duration-200 select-none
           ${
             compact
@@ -77,7 +77,7 @@ const LanguageSelector = ({
         <ChevronDown
           className={`
             transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-            text-slate-400 dark:text-slate-400 group-hover:text-purple-500
+            text-slate-400 dark:text-sky-400/60 group-hover:text-sky-500
             ${open ? "rotate-180" : "rotate-0"}
             ${compact ? "w-3 h-3" : "w-3.5 h-3.5"}
           `}
@@ -90,9 +90,9 @@ const LanguageSelector = ({
         aria-label="Language options"
         className={`
           absolute right-0 mt-2 w-36 z-50
-          rounded-2xl border border-slate-200 dark:border-white/10
-          bg-white/95 dark:bg-[#0f1117]/95
-          backdrop-blur-xl shadow-xl shadow-slate-200/50 dark:shadow-black/40
+          rounded-2xl border border-sky-200 dark:border-sky-800/40
+          bg-white/95 dark:bg-[#05111f]/95
+          backdrop-blur-xl shadow-xl shadow-sky-200/30 dark:shadow-black/40
           overflow-hidden
           transition-all duration-200 origin-top-right
           ${
@@ -124,8 +124,8 @@ const LanguageSelector = ({
                   transition-all duration-150
                   ${
                     isActive
-                      ? "bg-purple-600 text-white shadow-md shadow-purple-500/20"
-                      : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/8"
+                      ? "bg-sky-500 text-white shadow-md shadow-sky-500/25"
+                      : "text-slate-700 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-sky-900/30"
                   }
                 `}
               >
@@ -136,8 +136,8 @@ const LanguageSelector = ({
                     text-[10px] font-bold tracking-wider uppercase
                     ${
                       isActive
-                        ? "text-purple-200"
-                        : "text-slate-400 dark:text-slate-500"
+                        ? "text-sky-100"
+                        : "text-slate-400 dark:text-sky-400/50"
                     }
                   `}
                 >
@@ -152,7 +152,7 @@ const LanguageSelector = ({
         </div>
 
         {/* Bottom accent line */}
-        <div className="h-0.5 mx-3 mb-2 rounded-full bg-gradient-to-r from-purple-500/30 via-purple-400/60 to-purple-500/30" />
+        <div className="h-0.5 mx-3 mb-2 rounded-full bg-gradient-to-r from-sky-400/30 via-sky-400/60 to-indigo-400/30" />
       </div>
     </div>
   );
