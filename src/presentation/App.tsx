@@ -26,34 +26,21 @@ export default function App() {
                    transition-colors duration-300"
         style={{ backgroundColor: isDarkMode ? "#05111f" : "#f0f9ff" }}
       >
-        <Background />
-        <Navbar />
+        <DeferredSection>
+          <Suspense fallback={<div className="py-24 px-6" />}>
+            <Background />
+            <Navbar />
 
-        <main className="relative z-10">
-          <HommeSection />
-          <DeferredSection>
-            <Suspense fallback={<div className="py-24 px-6" />}>
+            <main className="relative z-10">
+              <HommeSection />
               <AboutSection />
-            </Suspense>
-          </DeferredSection>
-          <DeferredSection>
-            <Suspense fallback={<div className="py-24 px-6" />}>
               <SkillsSection />
-            </Suspense>
-          </DeferredSection>
-          <DeferredSection>
-            <Suspense fallback={<div className="py-24 px-6" />}>
               <ProjectsSection />
-            </Suspense>
-          </DeferredSection>
-          <DeferredSection>
-            <Suspense fallback={<div className="py-24 px-6" />}>
               <ContactSection />
-            </Suspense>
-          </DeferredSection>
-        </main>
-
-        <Footer />
+            </main>
+            <Footer />
+          </Suspense>
+        </DeferredSection>
       </div>
     </div>
   );
