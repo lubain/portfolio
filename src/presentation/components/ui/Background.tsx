@@ -172,8 +172,6 @@ const Background = () => {
       cells.sort((a, b) => a.z - b.z);
 
       for (const { col, row, idx, z } of cells) {
-        const cx = col * CELL + CELL * 0.5;
-        const cy = row * CELL + CELL * 0.5;
         const b = bright[idx] * gAlpha;
         const hasZ = z > 0.3;
         if (b < 0.004 && !hasZ) continue;
