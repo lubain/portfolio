@@ -3,10 +3,28 @@ import TypewriterEffect from "@/presentation/components/features/TypewriterEffec
 import { FadeIn } from "../ui/FadeIn";
 import { useNavbarStore } from "@/presentation/store/useNavbarStore";
 import { homeSectionTranslations } from "@/presentation/shared/constantes/translations";
+import { useEffect, useRef } from "react";
 
 const HommeSection = () => {
   const language = useNavbarStore((state) => state.language);
   const copy = homeSectionTranslations[language];
+  const spinRef = useRef<HTMLDivElement>(null);
+
+  // Pause animate-spin quand la photo n'est pas visible → économie GPU
+  useEffect(() => {
+    const el = spinRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        el.style.animationPlayState = entry.isIntersecting
+          ? "running"
+          : "paused";
+      },
+      { threshold: 0 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <section
@@ -79,21 +97,25 @@ const HommeSection = () => {
           <FadeIn delay={200}>
             <div className="relative flex-shrink-0">
               <div
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-sky-400 via-sky-300 to-indigo-400 animate-spin [animation-duration:8s] p-[3px]"
+                ref={spinRef}
                 aria-hidden="true"
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-sky-400 via-sky-300 to-indigo-400 animate-spin [animation-duration:8s] p-[3px]"
               />
               <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full p-[3px] bg-gradient-to-br from-sky-400 to-indigo-400">
                 <div className="w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-[#05111f]">
-                  <img
-                    src="/profile.jpg"
-                    alt="Photo de profil de Lubain Fadhel"
-                    width={288}
-                    height={288}
-                    fetchPriority="high"
-                    loading="eager"
-                    decoding="async"
-                    className="w-full h-full object-cover object-center"
-                  />
+                  <picture>
+                    <source srcSet="/profile.webp" type="image/webp" />
+                    <img
+                      src="/profile.jpg"
+                      alt="Photo de profil de Lubain Fadhel"
+                      width={288}
+                      height={288}
+                      fetchPriority="high"
+                      loading="eager"
+                      decoding="async"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </picture>
                 </div>
               </div>
               <div

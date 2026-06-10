@@ -5,7 +5,8 @@ export const PROJECTS: Project[] = [
     id: "chat-app",
     category: "App Web",
     techs: ["React", "NestJS", "Redis", "Socket.io", "Docker"],
-    image: "https://chat-app-xi-teal.vercel.app",
+    image:
+      "https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=formatauto=format&fit=crop&q=80&w=800fit=cropauto=format&fit=crop&q=80&w=800q=80auto=format&fit=crop&q=80&w=800w=800auto=format&fit=crop&q=80&w=800fm=webp",
     link: "https://chat-app-xi-teal.vercel.app",
     github: "https://github.com/lubain/chat-app",
   },
@@ -14,7 +15,7 @@ export const PROJECTS: Project[] = [
     category: "App Web",
     techs: ["React", "TypeScript", "Tailwind", "NestJS"],
     image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=formatauto=format&fit=crop&q=80&w=800fit=cropauto=format&fit=crop&q=80&w=800q=80auto=format&fit=crop&q=80&w=800w=800auto=format&fit=crop&q=80&w=800fm=webp",
     link: "https://gestion-entreprises-one.vercel.app/",
     github: "https://github.com/lubain/gestion-entreprises",
   },
@@ -22,7 +23,8 @@ export const PROJECTS: Project[] = [
     id: "strategy-ia-games",
     category: "Jeux Vidéo",
     techs: ["TypeScript", "Tailwind", "Zustand", "FastAPI"],
-    image: "https://strategy-ia-games.netlify.app",
+    image:
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=formatauto=format&fit=crop&q=80&w=800fit=cropauto=format&fit=crop&q=80&w=800q=80auto=format&fit=crop&q=80&w=800w=800auto=format&fit=crop&q=80&w=800fm=webp",
     link: "https://strategy-ia-games.netlify.app",
     github: "https://github.com/lubain/strategy-ai-games",
   },
@@ -31,7 +33,7 @@ export const PROJECTS: Project[] = [
     category: "App Web",
     techs: ["React", "Tailwind CSS", "Zustand", "Rust"],
     image:
-      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=formatauto=format&fit=crop&q=80&w=800fit=cropauto=format&fit=crop&q=80&w=800q=80auto=format&fit=crop&q=80&w=800w=800auto=format&fit=crop&q=80&w=800fm=webp",
     link: "#",
     github: "https://github.com/solfaml/solfaml-front",
   },
@@ -40,7 +42,7 @@ export const PROJECTS: Project[] = [
     category: "Backend & API",
     techs: ["NestJS", "GraphQL", "Redis", "Docker"],
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=formatauto=format&fit=crop&q=80&w=800fit=cropauto=format&fit=crop&q=80&w=800q=80auto=format&fit=crop&q=80&w=800w=800auto=format&fit=crop&q=80&w=800fm=webp",
     link: "#",
     github: "https://github.com/lubain/CoreGateway-Microservices",
   },
@@ -49,7 +51,7 @@ export const PROJECTS: Project[] = [
     category: "IA",
     techs: ["PyTorch", "Python", "Audio Preprocessing"],
     image:
-      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=formatauto=format&fit=crop&q=80&w=800fit=cropauto=format&fit=crop&q=80&w=800q=80auto=format&fit=crop&q=80&w=800w=800auto=format&fit=crop&q=80&w=800fm=webp",
     link: "#",
     github: "https://github.com/lubain/speech_to_text",
   },
