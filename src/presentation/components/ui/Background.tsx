@@ -2,50 +2,45 @@ import { useEffect, useRef } from "react";
 
 // ─── Paramètres de la grille ───────────────────────────────────────────────
 const CELL = 44;
-const RADIUS = 160; // rayon du glow souris (px)
-const RISE = 0.18; // vitesse montée hover
-const FADE = 0.88; // atténuation hover (souris active)
-const IDLE_FADE = 0.95; // atténuation hover (idle)
-const IDLE_DELAY = 1800; // ms avant extinction automatique
-const IDLE_SPD = 0.01; // vitesse extinction globale par frame
+const RADIUS = 160;
+const RISE = 0.18;
+const FADE = 0.88;
+const IDLE_FADE = 0.95;
+const IDLE_DELAY = 1800;
+const IDLE_SPD = 0.01;
 
 // ─── Paramètres de la vague 3D ────────────────────────────────────────────
-const MAX_Z = 36; // élévation max des carreaux (px caméra)
-const Z_RISE = 0.22; // vitesse montée élévation
-const Z_FADE = 0.91; // vitesse descente élévation
-const WAVE_SPEED = 0.28; // vitesse de propagation du front (cellules/frame)
-const WAVE_RADIUS = 4.5; // largeur du front de vague (cellules)
-const WAVE_FADE = 0.93; // amortissement amplitude avec le temps
+const MAX_Z = 36;
+const Z_RISE = 0.22;
+const Z_FADE = 0.91;
+const WAVE_SPEED = 0.28;
+const WAVE_RADIUS = 4.5;
+const WAVE_FADE = 0.93;
 
-const FOV = 520; // distance focale pour la projection perspective
+const FOV = 520;
 
-// ─── Couleur bleue ────────────────────────────────────────────────────────
 const BR = 56,
   BG = 189,
   BB = 248;
 
-// ─── Types ─────────────────────────────────────────────────────────────────
 interface Wave {
   x: number;
   y: number;
   t: number;
   alive: boolean;
 }
-
 interface Cell {
   col: number;
   row: number;
   idx: number;
   z: number;
 }
-
 interface Projected {
   px: number;
   py: number;
   scale: number;
 }
 
-// ─── Projection perspective ───────────────────────────────────────────────
 function project(
   cx: number,
   cy: number,
@@ -59,7 +54,6 @@ function project(
   return { px, py, scale };
 }
 
-// ─── Composant ────────────────────────────────────────────────────────────
 const Background = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -82,7 +76,6 @@ const Background = () => {
     let isIdle = false;
     let gAlpha = 1;
 
-    // ── Redimensionnement ───────────────────────────────────────────────
     const setSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -93,7 +86,6 @@ const Background = () => {
     };
     setSize();
 
-    // ── Événements souris ───────────────────────────────────────────────
     const onMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
@@ -106,33 +98,23 @@ const Background = () => {
       lastMove = performance.now() - IDLE_DELAY;
     };
 
-    // ── Événement clic → réveil idle + nouvelle vague ──────────────────
-    const onClick = (e: MouseEvent) => {
+    // Vague déclenchée uniquement par le bouton switch mode — toujours depuis le centre
+    const onCenterWave = () => {
+      const x = window.innerWidth / 2;
+      const y = window.innerHeight / 2;
       isIdle = false;
       lastMove = performance.now();
-      waves.push({ x: e.clientX, y: e.clientY, t: 0, alive: true });
-    };
-
-    // ── Événement tactile → réveil idle + nouvelle vague ───────────────
-    const onTouch = (e: TouchEvent) => {
-      e.preventDefault();
-      isIdle = false;
-      lastMove = performance.now();
-      const touch = e.touches[0];
-      waves.push({ x: touch.clientX, y: touch.clientY, t: 0, alive: true });
+      waves.push({ x, y, t: 0, alive: true });
     };
 
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseleave", onLeave);
     window.addEventListener("resize", setSize);
-    window.addEventListener("click", onClick);
-    window.addEventListener("touchstart", onTouch, { passive: false });
+    window.addEventListener("center-wave", onCenterWave);
 
-    // ── Boucle d'animation ──────────────────────────────────────────────
     const loop = () => {
       const now = performance.now();
 
-      // Idle
       if (!isIdle && now - lastMove > IDLE_DELAY) isIdle = true;
       gAlpha = isIdle
         ? Math.max(0, gAlpha - IDLE_SPD)
@@ -140,7 +122,6 @@ const Background = () => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Avancer les vagues, éliminer les mortes
       waves = waves.filter((w) => w.alive);
       waves.forEach((w) => {
         w.t += WAVE_SPEED;
@@ -149,7 +130,6 @@ const Background = () => {
 
       const fade = isIdle ? IDLE_FADE : FADE;
 
-      // ── Mise à jour des états par cellule ────────────────────────────
       for (let col = 0; col < cols; col++) {
         for (let row = 0; row < rows; row++) {
           const cx = col * CELL + CELL * 0.5;
@@ -163,7 +143,6 @@ const Background = () => {
               ? bright[idx] + (hov - bright[idx]) * RISE
               : bright[idx] * fade;
 
-          // Calcul de l'élévation cible (front de vague le plus fort)
           let zTarget = 0;
           waves.forEach((w) => {
             const wd = Math.hypot(cx - w.x, cy - w.y) / CELL;
@@ -174,7 +153,6 @@ const Background = () => {
               zTarget = Math.max(zTarget, power * MAX_Z * waveFade);
             }
           });
-
           zElev[idx] =
             zTarget > zElev[idx]
               ? zElev[idx] + (zTarget - zElev[idx]) * Z_RISE
@@ -182,25 +160,22 @@ const Background = () => {
         }
       }
 
-      // ── Tri z-order : dessiner les carreaux bas en premier ───────────
       const cells: Cell[] = [];
-      for (let col = 0; col < cols; col++) {
-        for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++)
+        for (let row = 0; row < rows; row++)
           cells.push({
             col,
             row,
             idx: col * rows + row,
             z: zElev[col * rows + row],
           });
-        }
-      }
       cells.sort((a, b) => a.z - b.z);
 
-      // ── Rendu ────────────────────────────────────────────────────────
       for (const { col, row, idx, z } of cells) {
+        const cx = col * CELL + CELL * 0.5;
+        const cy = row * CELL + CELL * 0.5;
         const b = bright[idx] * gAlpha;
         const hasZ = z > 0.3;
-
         if (b < 0.004 && !hasZ) continue;
 
         const x0 = col * CELL,
@@ -209,7 +184,6 @@ const Background = () => {
           y1 = y0 + CELL;
 
         if (!hasZ) {
-          // ── Carreau plat (pas de vague) ─────────────────────────────
           ctx.strokeStyle = `rgba(${BR},${BG},${BB},${(b * 0.75 * gAlpha).toFixed(3)})`;
           ctx.lineWidth = 0.8 + b * 0.9;
           ctx.beginPath();
@@ -219,10 +193,8 @@ const Background = () => {
           ctx.lineTo(x0, y1);
           ctx.stroke();
         } else {
-          // ── Carreau soulevé en 3D ───────────────────────────────────
           const W = canvas.width,
             H = canvas.height;
-
           const pts: Projected[] = [
             project(x0, y0, z, W, H),
             project(x1, y0, z, W, H),
@@ -235,11 +207,9 @@ const Background = () => {
             project(x1, y1, 0, W, H),
             project(x0, y1, 0, W, H),
           ];
-
           const lift = z / MAX_Z;
           const a = Math.min(1, 0.18 + lift * 0.82);
 
-          // Face supérieure (remplie, légère)
           ctx.fillStyle = `rgba(${BR},${BG},${BB},${(lift * 0.13).toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(pts[0].px, pts[0].py);
@@ -249,7 +219,6 @@ const Background = () => {
           ctx.closePath();
           ctx.fill();
 
-          // Bordures de la face supérieure
           ctx.strokeStyle = `rgba(${BR},${BG},${BB},${(a * 0.85).toFixed(3)})`;
           ctx.lineWidth = 0.8 + lift * 1.8;
           ctx.beginPath();
@@ -259,14 +228,7 @@ const Background = () => {
           ctx.lineTo(pts[3].px, pts[3].py);
           ctx.stroke();
 
-          // Arêtes latérales (haut → sol)
-          const edges: [number, number][] = [
-            [0, 1],
-            [1, 2],
-            [2, 3],
-            [3, 0],
-          ];
-          edges.forEach(([i]) => {
+          ([0, 1, 2, 3] as const).forEach((i) => {
             ctx.strokeStyle = `rgba(${BR},${BG},${BB},${(lift * 0.35).toFixed(3)})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
@@ -275,7 +237,6 @@ const Background = () => {
             ctx.stroke();
           });
 
-          // Projection au sol (ombre légère)
           if (b > 0.02) {
             ctx.strokeStyle = `rgba(${BR},${BG},${BB},${(b * 0.4).toFixed(3)})`;
             ctx.lineWidth = 0.6;
@@ -291,7 +252,6 @@ const Background = () => {
 
       raf = requestAnimationFrame(loop);
     };
-
     raf = requestAnimationFrame(loop);
 
     return () => {
@@ -299,24 +259,20 @@ const Background = () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseleave", onLeave);
       window.removeEventListener("resize", setSize);
-      window.removeEventListener("click", onClick);
-      window.removeEventListener("touchstart", onTouch);
+      window.removeEventListener("center-wave", onCenterWave);
     };
   }, []);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      {/* Blob décoratif haut-gauche */}
       <div
         className="blob w-96 h-96 rounded-full top-[-10%] left-[-10%]"
         style={{ background: "#38bdf8" }}
       />
-      {/* Blob décoratif bas-droite */}
       <div
         className="blob w-96 h-96 rounded-full bottom-[-10%] right-[-10%]"
         style={{ background: "#818cf8", animationDelay: "-5s" }}
       />
-      {/* Canvas principal — pointer-events actifs pour capter clics/touch */}
       <canvas
         ref={canvasRef}
         style={{
@@ -325,8 +281,7 @@ const Background = () => {
           width: "100vw",
           height: "100vh",
           zIndex: 1,
-          pointerEvents: "auto",
-          cursor: "crosshair",
+          pointerEvents: "none",
         }}
       />
     </div>
