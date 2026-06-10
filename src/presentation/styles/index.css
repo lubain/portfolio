@@ -6,20 +6,14 @@
 html {
   scroll-behavior: smooth;
 }
-/* Désactivation des animations par défaut du navigateur pour laisser place au Kamui */
+
+/* View Transition — désactiver l'animation par défaut, laisser clipPath gérer */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 
-/* Inverser l'ordre d'affichage pour l'aspiration (lorsqu'on passe au Dark mode) */
-.kamui-to-dark::view-transition-old(root) {
-  z-index: 2;
-}
-.kamui-to-dark::view-transition-new(root) {
-  z-index: 1;
-}
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
