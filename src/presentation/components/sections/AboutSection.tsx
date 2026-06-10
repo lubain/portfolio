@@ -72,7 +72,7 @@ const AboutSection = () => {
                             <h4 className="text-lg font-semibold mt-1 dark:text-white">
                               {localizedItem.title}
                             </h4>
-                            <p className="text-slate-500 dark:text-sky-200/60 text-sm mt-2">
+                            <p className="text-slate-500 dark:text-sky-200 text-sm mt-2">
                               {localizedItem.description}
                             </p>
                           </div>

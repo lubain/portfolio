@@ -273,6 +273,8 @@ const Background = () => {
       />
       <canvas
         ref={canvasRef}
+        aria-hidden="true"
+        tabIndex={-1}
         style={{
           position: "fixed",
           inset: 0,

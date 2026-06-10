@@ -20,7 +20,7 @@ const FormContact = () => {
           <h3 className="text-xl font-bold text-slate-900 dark:text-white">
             {copy.successTitle}
           </h3>
-          <p className="text-slate-500 dark:text-sky-200/60">
+          <p className="text-slate-500 dark:text-sky-200">
             {copy.successDescription}
           </p>
           <button
