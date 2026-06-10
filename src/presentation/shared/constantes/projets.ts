@@ -5,8 +5,7 @@ export const PROJECTS: Project[] = [
     id: "chat-app",
     category: "App Web",
     techs: ["React", "NestJS", "Redis", "Socket.io", "Docker"],
-    image:
-      "https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&q=80&w=800",
+    image: "https://chat-app-xi-teal.vercel.app",
     link: "https://chat-app-xi-teal.vercel.app",
     github: "https://github.com/lubain/chat-app",
   },
@@ -23,8 +22,7 @@ export const PROJECTS: Project[] = [
     id: "strategy-ia-games",
     category: "Jeux Vidéo",
     techs: ["TypeScript", "Tailwind", "Zustand", "FastAPI"],
-    image:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800",
+    image: "https://strategy-ia-games.netlify.app",
     link: "https://strategy-ia-games.netlify.app",
     github: "https://github.com/lubain/strategy-ai-games",
   },
