@@ -22,15 +22,13 @@ export default function App() {
     <div className={isDarkMode ? "dark" : ""}>
       <div
         className="min-h-screen text-slate-800 dark:text-[#e0f2fe] font-sans
-                   selection:bg-sky-400/30 selection:text-sky-900 dark:selection:text-sky-200
-                   transition-colors duration-300"
+                   selection:bg-sky-400/30 selection:text-sky-900 dark:selection:text-sky-200"
         style={{ backgroundColor: isDarkMode ? "#05111f" : "#f0f9ff" }}
       >
         <DeferredSection>
           <Suspense fallback={<div className="py-24 px-6" />}>
             <Background />
             <Navbar />
-
             <main className="relative z-10">
               <HommeSection />
               <AboutSection />
