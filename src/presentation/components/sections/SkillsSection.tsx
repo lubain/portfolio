@@ -19,7 +19,7 @@ const SkillsSection = () => {
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
               {copy.title}
             </h2>
-            <p className="text-slate-600 dark:text-sky-200/60 max-w-2xl mx-auto">
+            <p className="text-slate-600 dark:text-sky-200 max-w-2xl mx-auto">
               {copy.description}
             </p>
           </div>
@@ -39,9 +39,9 @@ const SkillsSection = () => {
                   {category.skills.map((skill) => (
                     <li
                       key={skill.name}
-                      className="flex items-center gap-2 text-slate-600 dark:text-sky-200/70"
+                      className="flex items-center gap-2 text-slate-600 dark:text-sky-200"
                     >
-                      {skill.icon}
+                      <span aria-hidden="true">{skill.icon}</span>
                       <span>{skill.name}</span>
                     </li>
                   ))}

@@ -23,7 +23,7 @@ const ContactSection: React.FC = () => {
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
                 {copy.title}
               </h2>
-              <p className="text-slate-600 dark:text-sky-200/60">
+              <p className="text-slate-600 dark:text-sky-200">
                 {copy.description}
               </p>
             </div>
