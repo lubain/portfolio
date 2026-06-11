@@ -23,12 +23,21 @@ export default defineConfig({
     },
   },
   build: {
-    // Séparation des chunks pour un meilleur cache
     rollupOptions: {
       output: {
-        manualChunks: {
-          "vendor-react": ["react", "react-dom"],
-          "vendor-ui": ["lucide-react", "zustand"],
+        manualChunks: (id: string) => {
+          if (
+            id.includes("node_modules/react") ||
+            id.includes("node_modules/react-dom")
+          ) {
+            return "vendor-react";
+          }
+          if (
+            id.includes("node_modules/lucide-react") ||
+            id.includes("node_modules/zustand")
+          ) {
+            return "vendor-ui";
+          }
         },
       },
     },
