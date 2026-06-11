@@ -19,18 +19,27 @@ interface ProjectCardProps {
 export const ProjectCard = ({ project, language, copy }: ProjectCardProps) => {
   const { imageUrl, loading, error } = useProjectScreenshot(project.image);
 
-  // Utiliser l'image du hook si disponible, sinon utiliser l'URL du projet (fallback pour les liens inactifs)
   const displayImageUrl = imageUrl || project.image;
 
   return (
     <SpotlightCard className="group h-full flex flex-col">
       <div className="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
-        <div className="absolute inset-0 bg-sky-900/10 dark:bg-sky-900/20 group-hover:bg-transparent transition duration-300 z-10" />
+        <div
+          className="absolute inset-0 bg-sky-900/10 dark:bg-sky-900/20 group-hover:bg-transparent transition duration-300 z-10"
+          aria-hidden="true"
+        />
 
         {/* Loading skeleton */}
         {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-slate-200 dark:bg-slate-700 animate-pulse">
-            <Loader className="w-6 h-6 text-sky-500 animate-spin" />
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-slate-200 dark:bg-slate-700 animate-pulse"
+            aria-label="Chargement de l'image"
+            role="status"
+          >
+            <Loader
+              className="w-6 h-6 text-sky-500 animate-spin"
+              aria-hidden="true"
+            />
           </div>
         )}
 
@@ -50,7 +59,10 @@ export const ProjectCard = ({ project, language, copy }: ProjectCardProps) => {
 
         {/* Error state */}
         {error && !imageUrl && (
-          <div className="absolute inset-0 flex items-center justify-center bg-slate-100 dark:bg-slate-700 text-slate-500 text-xs">
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-slate-100 dark:bg-slate-700 text-slate-500 text-xs"
+            role="alert"
+          >
             {error}
           </div>
         )}
@@ -67,7 +79,9 @@ export const ProjectCard = ({ project, language, copy }: ProjectCardProps) => {
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
           {project.title}
         </h3>
-        <p className="text-slate-600 dark:text-sky-200/60 mb-6 flex-grow text-sm leading-relaxed">
+
+        {/* Contraste corrigé : sky-200/60 → sky-200 */}
+        <p className="text-slate-600 dark:text-sky-200 mb-6 flex-grow text-sm leading-relaxed">
           {project.description}
         </p>
 
@@ -86,18 +100,22 @@ export const ProjectCard = ({ project, language, copy }: ProjectCardProps) => {
           <a
             href={project.github}
             target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm text-slate-600 dark:text-sky-300/70 hover:text-slate-900 dark:hover:text-sky-200 transition-colors"
+            rel="noreferrer noopener"
+            aria-label={`${copy.codeLabel} — ${project.title} (GitHub)`}
+            className="flex items-center gap-2 text-sm text-slate-600 dark:text-sky-300 hover:text-slate-900 dark:hover:text-sky-200 transition-colors"
           >
-            <Github className="w-4 h-4" /> {copy.codeLabel}
+            <Github className="w-4 h-4" aria-hidden="true" /> {copy.codeLabel}
           </a>
           <a
             href={project.link}
-            target={`${project.link !== "#" ? "_blank" : "_self"}`}
-            rel={project.link !== "#" ? "noopener noreferrer" : undefined}
-            className="flex items-center gap-2 text-sm text-slate-600 dark:text-sky-300/70 hover:text-slate-900 dark:hover:text-sky-200 transition-colors ml-auto"
+            target={project.link !== "#" ? "_blank" : "_self"}
+            rel={project.link !== "#" ? "noreferrer noopener" : undefined}
+            aria-label={`${copy.liveDemoLabel} — ${project.title}`}
+            aria-disabled={project.link === "#"}
+            className="flex items-center gap-2 text-sm text-slate-600 dark:text-sky-300 hover:text-slate-900 dark:hover:text-sky-200 transition-colors ml-auto"
           >
-            {copy.liveDemoLabel} <ExternalLink className="w-4 h-4" />
+            {copy.liveDemoLabel}{" "}
+            <ExternalLink className="w-4 h-4" aria-hidden="true" />
           </a>
         </div>
       </div>
