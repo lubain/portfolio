@@ -1,6 +1,6 @@
 import { useNavbar } from "@/presentation/hooks/useNavbar";
 import { menuItems } from "@/presentation/shared/constantes/menuItems";
-import { Menu, Moon, Sun, Terminal, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import LanguageSelector from "@/presentation/components/ui/LanguageSelector";
 
 const Navbar = () => {
@@ -33,14 +33,23 @@ const Navbar = () => {
           className="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white flex items-center gap-2 relative z-10"
           aria-label="Retour en haut de page"
         >
-          <Terminal
-            className="w-6 h-6 text-sky-500 dark:text-sky-400"
-            aria-hidden="true"
-          />
-          <span>
-            Fa
-            <span className="text-sky-500 dark:text-sky-400">.</span>dhel
-          </span>
+          <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-full">
+            <div className="w-full h-full rounded-full overflow-hidden">
+              <picture>
+                <source srcSet="/lf.webp" type="image/webp" />
+                <img
+                  src="/lf.jpg"
+                  alt="Logo de Lubain Fadhel"
+                  width={24}
+                  height={24}
+                  fetchPriority="high"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center"
+                />
+              </picture>
+            </div>
+          </div>
         </a>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
