@@ -1,6 +1,6 @@
 import { useNavbar } from "@/presentation/hooks/useNavbar";
 import { menuItems } from "@/presentation/shared/constantes/menuItems";
-import { Menu, Moon, Sun, Terminal, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import LanguageSelector from "@/presentation/components/ui/LanguageSelector";
 
 const Navbar = () => {
