@@ -14,10 +14,9 @@ export const PROJECTS: Project[] = [
     id: "gestion-petite-entreprise",
     category: "App Web",
     techs: ["React", "TypeScript", "Tailwind", "NestJS"],
-    image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&q=80&w=800&fm=webp",
-    link: "https://gestion-entreprises-one.vercel.app/",
-    github: "https://github.com/lubain/gestion-entreprises",
+    image: "https://bizflow-business-manager.vercel.app",
+    link: "https://bizflow-business-manager.vercel.app",
+    github: "https://github.com/lubain/bizflow-business-manager",
   },
   {
     id: "strategy-ia-games",
