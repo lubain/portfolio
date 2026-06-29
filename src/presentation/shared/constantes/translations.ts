@@ -136,7 +136,7 @@ export const projectTranslations = {
       description:
         "Application de gestion pour petites entreprises permettant la facturation, le suivi de stock, la gestion des clients, la notation des depenses et un tableau de bord simple pour piloter l'activite au quotidien.",
     },
-    "strategy-ia-games": {
+    "strategy-ai-games": {
       title: "jeux strategiques IA",
       description:
         "Developpement d'une plateforme de jeux de strategie integrant un moteur d'intelligence artificielle optimise par l'algorithme d'elagage Alpha-Beta.",
@@ -168,7 +168,7 @@ export const projectTranslations = {
       description:
         "A management app for small businesses covering invoicing, inventory tracking, client management, expense logging, and a simple dashboard for daily operations.",
     },
-    "strategy-ia-games": {
+    "strategy-ai-games": {
       title: "Strategy IA Games",
       description:
         "A strategy game platform featuring Tic-Tac-Toe, Fanorona Telo, and Connect Four with an AI engine optimized through Alpha-Beta pruning.",

@@ -19,12 +19,12 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/lubain/bizflow-business-manager",
   },
   {
-    id: "strategy-ia-games",
+    id: "strategy-ai-games",
     category: "Jeux Vidéo",
     techs: ["TypeScript", "Tailwind", "Zustand", "FastAPI"],
     // URL app réelle — screenshot pris par useProjectScreenshot
-    image: "https://strategy-ia-games.netlify.app",
-    link: "https://strategy-ia-games.netlify.app",
+    image: "https://strategy-ai-games.vercel.app",
+    link: "https://strategy-ai-games.vercel.app",
     github: "https://github.com/lubain/strategy-ai-games",
   },
   {
