@@ -38,6 +38,9 @@ export default defineConfig({
           ) {
             return "vendor-ui";
           }
+          if (id.includes("node_modules/three")) {
+            return "vendor-three";
+          }
         },
       },
     },

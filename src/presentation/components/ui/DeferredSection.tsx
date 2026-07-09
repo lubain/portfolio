@@ -24,7 +24,7 @@ const DeferredSection = ({
           observer.disconnect();
         }
       },
-      { rootMargin }
+      { rootMargin },
     );
 
     const current = ref.current;

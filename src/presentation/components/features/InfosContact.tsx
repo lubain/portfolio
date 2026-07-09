@@ -7,7 +7,16 @@ const InfosContact = () => {
   const copy = contactSectionTranslations[language];
 
   return (
-    <div className="md:col-span-2 space-y-8">
+    <div className="space-y-10">
+      <div>
+        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          {copy.title}
+        </h2>
+        <p className="text-slate-600 dark:text-sky-200 max-w-md">
+          {copy.description}
+        </p>
+      </div>
+
       <div>
         <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
           {copy.infoTitle}

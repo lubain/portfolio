@@ -12,7 +12,7 @@ export const useScrollReveal = (threshold = 0.1) => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold }
+      { threshold },
     );
 
     const currentRef = ref.current;

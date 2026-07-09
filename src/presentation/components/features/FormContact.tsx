@@ -13,9 +13,9 @@ const FormContact = () => {
     useContactSection();
 
   return (
-    <div className="md:col-span-3">
+    <div className="relative bg-white/80 dark:bg-sky-900/20 border border-sky-200 dark:border-sky-800/40 rounded-3xl p-6 md:p-8 backdrop-blur-xl shadow-xl dark:shadow-none transition-colors duration-300">
       {formState === "success" ? (
-        <div className="h-full flex flex-col items-center justify-center gap-4 py-12 text-center">
+        <div className="flex flex-col items-center justify-center gap-4 py-12 text-center">
           <CheckCircle className="w-16 h-16 text-sky-400" />
           <h3 className="text-xl font-bold text-slate-900 dark:text-white">
             {copy.successTitle}

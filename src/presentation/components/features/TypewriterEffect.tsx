@@ -18,7 +18,7 @@ const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
   const longestText = useMemo(() => {
     if (texts.length === 0) return "";
     return texts.reduce((longest, current) =>
-      current.length > longest.length ? current : longest
+      current.length > longest.length ? current : longest,
     );
   }, [texts]);
 
@@ -55,7 +55,7 @@ const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
           }
         }
       },
-      isPaused ? pauseDuration : isDeleting ? deleteSpeed : speed
+      isPaused ? pauseDuration : isDeleting ? deleteSpeed : speed,
     );
 
     return () => clearTimeout(timeout);
