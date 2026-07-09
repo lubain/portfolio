@@ -3,7 +3,6 @@ import Footer from "./components/ui/Footer";
 import HommeSection from "./components/sections/HommeSection";
 import Background from "./components/ui/Background";
 import Navbar from "./components/features/Navbar";
-import { useNavbar } from "./hooks/useNavbar";
 import DeferredSection from "./components/ui/DeferredSection";
 
 const AboutSection = lazy(() => import("./components/sections/AboutSection"));
@@ -16,14 +15,11 @@ const ContactSection = lazy(
 );
 
 export default function App() {
-  const { isDarkMode } = useNavbar();
-
   return (
-    <div className={isDarkMode ? "dark" : ""}>
+    <div className="dark">
       <div
-        className="min-h-screen text-slate-800 dark:text-[#e0f2fe] font-sans
-                   selection:bg-sky-400/30 selection:text-sky-900 dark:selection:text-sky-200"
-        style={{ backgroundColor: isDarkMode ? "#05111f" : "#f0f9ff" }}
+        className="min-h-screen text-[#e0f2fe] font-sans
+                   selection:bg-sky-400/30 selection:text-sky-200"
       >
         <DeferredSection>
           <Suspense fallback={<div className="py-24 px-6" />}>
