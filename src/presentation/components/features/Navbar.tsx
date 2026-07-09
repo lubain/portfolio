@@ -1,20 +1,16 @@
 import { useNavbar } from "@/presentation/hooks/useNavbar";
 import { menuItems } from "@/presentation/shared/constantes/menuItems";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import LanguageSelector from "@/presentation/components/ui/LanguageSelector";
 
 const Navbar = () => {
   const {
-    isDarkMode,
     isScrolled,
     activeSection,
     language,
-    themeBtnRef,
     mobileMenuOpen,
     setMobileMenuOpen,
-    setIsDarkMode,
     setLanguage,
-    toggleTheme,
   } = useNavbar();
 
   const localizedMenuItems = menuItems[language];
@@ -77,22 +73,6 @@ const Navbar = () => {
           ))}
 
           <LanguageSelector language={language} setLanguage={setLanguage} />
-
-          <button
-            aria-label={
-              isDarkMode ? "Passer en mode clair" : "Passer en mode sombre"
-            }
-            aria-pressed={isDarkMode}
-            ref={themeBtnRef}
-            onClick={toggleTheme}
-            className="relative p-2.5 rounded-full bg-sky-100 dark:bg-sky-900/30 text-slate-700 dark:text-sky-200 hover:scale-110 active:scale-90 transition-all overflow-hidden border border-sky-200 dark:border-sky-700/40"
-          >
-            {isDarkMode ? (
-              <Sun className="relative w-5 h-5" aria-hidden="true" />
-            ) : (
-              <Moon className="relative w-5 h-5" aria-hidden="true" />
-            )}
-          </button>
         </div>
 
         <div className="md:hidden flex items-center gap-4 relative z-10">
@@ -101,20 +81,6 @@ const Navbar = () => {
             setLanguage={setLanguage}
             compact
           />
-          <button
-            aria-label={
-              isDarkMode ? "Passer en mode clair" : "Passer en mode sombre"
-            }
-            aria-pressed={isDarkMode}
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            className="p-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-slate-700 dark:text-sky-200 transition-all"
-          >
-            {isDarkMode ? (
-              <Sun className="w-5 h-5" aria-hidden="true" />
-            ) : (
-              <Moon className="w-5 h-5" aria-hidden="true" />
-            )}
-          </button>
           <button
             aria-label="Ouvrir le menu de navigation"
             aria-expanded={mobileMenuOpen}
