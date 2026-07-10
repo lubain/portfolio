@@ -3,6 +3,15 @@ import { ProjectCategory } from "../types/ProjectCategory";
 
 export type Language = "fr" | "en";
 
+export const loadingScreenTranslations = {
+  fr: {
+    caption: "Chargement de la scène 3D",
+  },
+  en: {
+    caption: "Loading the 3D scene",
+  },
+} as const;
+
 export const homeSectionTranslations = {
   fr: {
     badge: "Disponible pour de nouvelles opportunites",
