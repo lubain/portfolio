@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { useSceneLoadingStore } from "@/presentation/store/useSceneLoadingStore";
 
 // ─── Textures Terre (assets officiels du dépôt Three.js r160) ─────────────
 const TEX_BASE =
@@ -12,12 +13,18 @@ const Z_NEAR = 150; // position rapprochée (bas de page)
 // Teinte de fond alignée sur la palette sombre déjà utilisée sur le site
 const CLEAR_COLOR = 0x05111f;
 
+// Filet de sécurité : si une texture ne charge jamais (réseau bloqué, CDN
+// injoignable...), on débloque quand même l'affichage après ce délai.
+const LOAD_SAFETY_TIMEOUT_MS = 15000;
+
 function easeInOutCubic(t: number) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
 const Background = () => {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const setProgress = useSceneLoadingStore((state) => state.setProgress);
+  const setLoaded = useSceneLoadingStore((state) => state.setLoaded);
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -84,7 +91,31 @@ const Background = () => {
     scene.add(sunDir);
 
     // ── Terre (textures officielles Three.js, dérivées NASA Blue/Black Marble) ─
-    const textureLoader = new THREE.TextureLoader();
+    // Le LoadingManager suit la progression des 4 textures et remonte un
+    // pourcentage réel (itemsLoaded / itemsTotal) à l'écran de chargement.
+    let safetyTimeout: number | undefined;
+    const manager = new THREE.LoadingManager();
+    manager.onProgress = (_url, itemsLoaded, itemsTotal) => {
+      const percent =
+        itemsTotal > 0 ? Math.round((itemsLoaded / itemsTotal) * 100) : 100;
+      setProgress(percent);
+    };
+    manager.onLoad = () => {
+      setProgress(100);
+      setLoaded(true);
+      if (safetyTimeout !== undefined) window.clearTimeout(safetyTimeout);
+    };
+    manager.onError = () => {
+      // Une texture en échec ne doit pas bloquer indéfiniment l'affichage :
+      // le rendu continue avec les textures disponibles.
+    };
+    // Filet de sécurité si onLoad ne se déclenche jamais (ex: CDN bloqué).
+    safetyTimeout = window.setTimeout(() => {
+      setProgress(100);
+      setLoaded(true);
+    }, LOAD_SAFETY_TIMEOUT_MS);
+
+    const textureLoader = new THREE.TextureLoader(manager);
     const earthColorMap = textureLoader.load(TEX_BASE + "earth_atmos_2048.jpg");
     earthColorMap.colorSpace = THREE.SRGBColorSpace;
     const earthNormalMap = textureLoader.load(
@@ -213,6 +244,7 @@ const Background = () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", onVisibility);
+      if (safetyTimeout !== undefined) window.clearTimeout(safetyTimeout);
 
       farStars.geometry.dispose();
       (farStars.material as THREE.Material).dispose();
