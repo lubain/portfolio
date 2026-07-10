@@ -1,5 +1,5 @@
 import { ExternalLink, Github, Loader } from "lucide-react";
-import { SpotlightCard } from "../ui/SpotlightCard";
+import { Card3D } from "../ui/Card3D";
 import { useProjectScreenshot } from "../../hooks/useProjectScreenshot";
 import { projectCategoryLabels } from "@/presentation/shared/constantes/translations";
 import {
@@ -22,7 +22,7 @@ export const ProjectCard = ({ project, language, copy }: ProjectCardProps) => {
   const displayImageUrl = imageUrl || project.image;
 
   return (
-    <SpotlightCard className="group h-full flex flex-col">
+    <Card3D className="group h-full flex flex-col">
       <div className="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
         <div
           className="absolute inset-0 bg-sky-900/10 dark:bg-sky-900/20 group-hover:bg-transparent transition duration-300 z-10"
@@ -119,6 +119,6 @@ export const ProjectCard = ({ project, language, copy }: ProjectCardProps) => {
           </a>
         </div>
       </div>
-    </SpotlightCard>
+    </Card3D>
   );
 };
